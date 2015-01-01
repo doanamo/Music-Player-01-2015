@@ -32,6 +32,23 @@ var main = function()
                 
                 audio = newAudio;
                 audio.play();
+                
+                // Update playback name.
+                var name = file.name.replace(/\.[^/.]+$/, "");
+                $('#playback-name').text(name);
+                
+                // Handle playback time change.
+                audio.bind("timeupdate", function(event)
+                {
+                    var time = this.getTime();
+                    var duration = this.getDuration();
+                    
+                    // Update time text.
+                    $('#playback-time').text(buzz.toTimer(time) + " / " + buzz.toTimer(duration));
+                    
+                    // Update progress bar.
+                    $('#playback-progress').find('.progress-bar').css('width', time / duration * 100 + '%');
+                });
             }
         }
         
