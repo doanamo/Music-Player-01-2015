@@ -21,9 +21,25 @@ body
     top: 4px;
 }
 
-#window #playback
+#playback-panel
 {
     position: absolute;
     width: 100%;
     bottom: 0px;
+}
+
+#playback-info
+{
+    overflow: hidden;
+}
+
+#playback-info *
+{
+    display: inline-block;
+}
+
+#playback-time
+{
+    width: auto;
+    float: right;
 }
