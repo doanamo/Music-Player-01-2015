@@ -13,6 +13,16 @@ body
     margin:0px;
 }
 
+#window .panel-heading
+{
+    -webkit-app-region: drag;
+}
+
+#window .panel-heading button
+{
+    -webkit-app-region: no-drag;
+}
+
 /*
     Window Title
 */
