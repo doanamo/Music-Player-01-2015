@@ -58,6 +58,7 @@ body
 #playback-control
 {
     text-align: center;
+    width: 85%;
 }
 
 #playback-control *
