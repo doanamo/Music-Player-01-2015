@@ -7,9 +7,11 @@
         "title": "Music Player",
         "icon": "",
     
+        "resizable": true,
         "width": 1024,
         "height": 576,
-        "resizable": true,
+        "min_width": 390,
+        "min_height": 128,
     
         "toolbar": false,
         "frame": false,
