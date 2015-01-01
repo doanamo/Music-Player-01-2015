@@ -9,7 +9,7 @@
     
         "width": 1024,
         "height": 576,
-        "resizable": false,
+        "resizable": true,
     
         "toolbar": true,
         "frame": true,

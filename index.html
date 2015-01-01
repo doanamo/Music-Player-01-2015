@@ -5,18 +5,41 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="background">
-        </div>
-        
-        <div class="frame">
-            <div class="info">
-                <p>Playing: None</p>
+        <div id="window" class="panel panel-default">
+            <div class="panel-heading clearfix" style="-webkit-app-region: drag">
+                <p class="panel-title pull-left">Music Player</p>
+                
+                <div class="btn-group pull-right">
+                    <button class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
             </div>
+            
+            <div class="panel-body">
+                <div id="playback-info">
+                    <p>Playing: Woodkid - The Golden Age</p>
+                </div>
+                
+                <div id="playback-progress">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 20%"></div>
+                    </div>
+                </div>
 
-            <div class="controls">
-                <span class="glyphicon glyphicon-stop"></span>
-                <span class="glyphicon glyphicon-pause"></span>
-                <span class="glyphicon glyphicon-play"></span>
+                <div id="playback-controls">
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-stop"></span>
+                    </button>
+                    
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-pause"></span>
+                    </button>
+                    
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-play"></span>
+                    </button>
+                </div>
             </div>
         </div>
         

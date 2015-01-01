@@ -1,15 +1,17 @@
-.background
+body
 {
-    background-color: #ffffff;
-    
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    z-index: -1;
+    background-color: rgba(0, 0, 0, 0);
 }
 
-.frame
+#window .panel-heading
 {
+    
+}
+
+#window .panel-title
+{
+    font-weight: bold;
+    
+    position: relative;
+    top: 4px;
 }
