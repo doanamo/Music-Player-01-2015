@@ -10,7 +10,7 @@
         "resizable": true,
         "width": 1024,
         "height": 576,
-        "min_width": 390,
+        "min_width": 420,
         "min_height": 128,
     
         "toolbar": false,
