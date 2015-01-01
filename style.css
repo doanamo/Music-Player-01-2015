@@ -13,13 +13,50 @@ body
     margin:0px;
 }
 
-#window .panel-title
+/*
+    Window Title
+*/
+
+#window .panel-heading
+{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#window-title
+{
+    float: left;
+    padding-right: 20px;
+}
+
+#window-title .panel-title
 {
     font-weight: bold;
     
     position: relative;
-    top: 4px;
+    top: 5px;
 }
+
+#window-control
+{
+    float: right;
+    padding-left: 20px;
+}
+
+#playback-control
+{
+    text-align: center;
+}
+
+#playback-control *
+{
+}
+
+/*
+    Playback Panel
+*/
 
 #playback-panel
 {
@@ -42,4 +79,9 @@ body
 {
     width: auto;
     float: right;
+}
+
+#playback-progress .progress
+{
+    margin-bottom: 5px;
 }
