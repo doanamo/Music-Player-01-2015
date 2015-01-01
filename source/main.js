@@ -55,8 +55,8 @@ var main = function()
         return false;
     };
 
-    // Window control.
-    $('#window-close').click(function()
+    // Application control.
+    $('#application-close').click(function()
     {
         window.close();
     });
