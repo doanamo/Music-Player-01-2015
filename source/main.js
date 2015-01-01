@@ -1,7 +1,66 @@
 var gui = require('nw.gui');
 var window = gui.Window.get();
 
-var audio = null;
+var audio = new function()
+{
+    this.sound = null;
+
+    this.load = function(file)
+    {
+        if(file)
+        {
+            var sound = new buzz.sound(file.path);
+            
+            if(sound)
+            {
+                this.stop();
+                this.sound = sound;
+                this.play();
+                
+                // Update playback name.
+                var name = file.name.replace(/\.[^/.]+$/, "");
+                $('#playback-name').text(name);
+                
+                // Update playback time.
+                this.sound.bind("timeupdate", function(event)
+                {
+                    var time = this.getTime();
+                    var duration = this.getDuration();
+                    
+                    // Update time text.
+                    $('#playback-time').text(buzz.toTimer(time) + " / " + buzz.toTimer(duration));
+                    
+                    // Update progress bar.
+                    $('#playback-progress').find('.progress-bar').css('width', time / duration * 100 + '%');
+                });
+            }
+        }
+    };
+    
+    this.stop = function()
+    {
+        if(this.sound)
+        {
+            this.sound.stop();
+        }
+    };
+    
+    this.pause = function()
+    {
+        if(this.sound)
+        {
+            this.sound.pause();
+        }
+    };
+    
+    this.play = function()
+    {
+        if(this.sound)
+        {
+            this.sound.play();
+        }
+    };
+};
 
 var main = function()
 {
@@ -15,42 +74,8 @@ var main = function()
     window.ondrop = function(event)
     {
         event.preventDefault();
-        
-        // Load the dropped audio file.
-        var file = event.dataTransfer.files[0];
-        
-        if(file)
-        {
-            var newAudio = new buzz.sound(file.path);
-            
-            if(newAudio)
-            {
-                if(audio)
-                {
-                    audio.stop();
-                }
-                
-                audio = newAudio;
-                audio.play();
-                
-                // Update playback name.
-                var name = file.name.replace(/\.[^/.]+$/, "");
-                $('#playback-name').text(name);
-                
-                // Handle playback time change.
-                audio.bind("timeupdate", function(event)
-                {
-                    var time = this.getTime();
-                    var duration = this.getDuration();
-                    
-                    // Update time text.
-                    $('#playback-time').text(buzz.toTimer(time) + " / " + buzz.toTimer(duration));
-                    
-                    // Update progress bar.
-                    $('#playback-progress').find('.progress-bar').css('width', time / duration * 100 + '%');
-                });
-            }
-        }
+
+        audio.load(event.dataTransfer.files[0]);
         
         return false;
     };
@@ -64,26 +89,17 @@ var main = function()
     // Playback control.
     $('#playback-stop').click(function()
     {
-        if(audio)
-        {
-            audio.stop();
-        }
+        audio.stop();
     });
     
     $('#playback-pause').click(function()
     {
-        if(audio)
-        {
-            audio.pause();
-        }
+        audio.pause();
     });
     
     $('#playback-play').click(function()
     {
-        if(audio)
-        {
-            audio.play();
-        }
+        audio.play();
     });
 };
 
