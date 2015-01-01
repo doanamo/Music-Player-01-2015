@@ -1,6 +1,6 @@
 {
     "name": "node-webkit",
-    "main": "index.html",
+    "main": "../index.html",
     
     "window":
     {
@@ -11,8 +11,8 @@
         "height": 576,
         "resizable": true,
     
-        "toolbar": false,
-        "frame": false,
-        "transparent": true
+        "toolbar": true,
+        "frame": true,
+        "transparent": false
     }
 }
