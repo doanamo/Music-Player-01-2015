@@ -17,11 +17,27 @@ var audio = new function()
                 this.sound = sound;
                 this.play();
                 
-                // Update playback name.
+                // Set playback name.
                 var name = file.name.replace(/\.[^/.]+$/, "");
                 $('#playback-name').text(name);
                 
-                // Update playback time.
+                // Set playback state handlers.
+                this.sound.bind("playing", function(event)
+                {
+                    // Change progress bar style.
+                    var bar = $('#playback-progress').find('.progress-bar');
+                    bar.addClass('progress-bar-striped active');
+                    bar.removeClass('progress-bar-default');
+                });
+                
+                this.sound.bind("pause", function(event)
+                {
+                    // Change progress bar style.
+                    var bar = $('#playback-progress').find('.progress-bar');
+                    bar.removeClass('progress-bar-striped active');
+                    bar.addClass('progress-bar-default');
+                });
+                
                 this.sound.bind("timeupdate", function(event)
                 {
                     var time = this.getTime();
