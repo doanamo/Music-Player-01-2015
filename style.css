@@ -96,3 +96,12 @@ body
 {
     margin-bottom: 5px;
 }
+
+/*
+    Utility
+*/
+
+.no-transition
+{
+    transition: none; !important;
+}
