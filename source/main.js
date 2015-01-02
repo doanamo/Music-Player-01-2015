@@ -31,12 +31,19 @@ var audio = new function()
         this.sound = sound;
         this.play();
         
-        // Set playback name.
+        // Set sound track name.
         var name = file.name.replace(/\.[^/.]+$/, "");
         $('#playback-name').text(name);
         
+        // Set sound track duration when it becomes available.
+        this.sound.bind("durationchange", function()
+        {
+            var duration = this.getDuration();
+            $('#playback-time .duration').text(buzz.toTimer(duration));
+        });
+        
         // Set playback event handlers.
-        this.sound.bind("playing", function(event)
+        this.sound.bind("playing", function()
         {
             // Change progress bar style.
             var bar = $('#playback-progress').find('.progress-bar');
@@ -44,7 +51,7 @@ var audio = new function()
             bar.removeClass('progress-bar-default');
         });
         
-        this.sound.bind("pause", function(event)
+        this.sound.bind("pause", function()
         {
             // Change progress bar style.
             var bar = $('#playback-progress').find('.progress-bar');
@@ -52,7 +59,7 @@ var audio = new function()
             bar.addClass('progress-bar-default');
         });
         
-        this.sound.bind("timeupdate", function(event)
+        this.sound.bind("timeupdate", function()
         {
             // Don't update if dragging the playback bar.
             if(gui.draggingPlaybackBar)
@@ -63,7 +70,7 @@ var audio = new function()
             var duration = this.getDuration();
             
             // Update time text.
-            $('#playback-time').text(buzz.toTimer(time) + " / " + buzz.toTimer(duration));
+            $('#playback-time .current').text(buzz.toTimer(time));
             
             // Update progress bar.
             $('#playback-progress').find('.progress-bar').css('width', time / duration * 100 + '%');
@@ -203,9 +210,9 @@ var main = function()
             var alpha = x / $('#playback-progress').width();
             alpha = Math.clamp(alpha, 0.0, 1.0);
             
-            // Update progress time.
+            // Reflect time of dragged progress bar.
             var duration = audio.getDuration();
-            $('#playback-time').text(buzz.toTimer(duration * alpha) + " / " + buzz.toTimer(duration));
+            $('#playback-time .current').text(buzz.toTimer(duration * alpha));
             
             // Update progress bar.
             $('#playback-progress').find('.progress-bar').css('width', alpha * 100 + '%');
