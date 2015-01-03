@@ -46,7 +46,7 @@ var audio = new function()
         this.sound.bind("playing", function()
         {
             // Change progress bar style.
-            var bar = $('#playback-progress').find('.progress-bar');
+            var bar = $('#playback-progress .progress-bar');
             bar.addClass('progress-bar-striped active');
             bar.removeClass('progress-bar-default');
         });
@@ -54,7 +54,7 @@ var audio = new function()
         this.sound.bind("pause", function()
         {
             // Change progress bar style.
-            var bar = $('#playback-progress').find('.progress-bar');
+            var bar = $('#playback-progress .progress-bar');
             bar.removeClass('progress-bar-striped active');
             bar.addClass('progress-bar-default');
         });
@@ -73,7 +73,7 @@ var audio = new function()
             $('#playback-time .current').text(buzz.toTimer(time));
             
             // Update progress bar.
-            $('#playback-progress').find('.progress-bar').css('width', time / duration * 100 + '%');
+            $('#playback-progress .progress-bar').css('width', time / duration * 100 + '%');
         });
     };
     
@@ -185,13 +185,13 @@ var main = function()
     });
     
     // Progress bar.
-    $('#playback-progress').children('.progress').mousedown(function(event)
+    $('#playback-progress').mousedown(function(event)
     {
         // Set interface state.
         gui.draggingPlaybackBar = true;
         
         // Disable transition effect.
-        $('#playback-progress').find('.progress-bar').addClass('no-transition');
+        $('#playback-progress .progress-bar').addClass('no-transition');
 
         // Prevent selection.
         return false;
@@ -233,7 +233,7 @@ var main = function()
         }
     });
     
-    $('#playback-progress').children('.progress').click(function(event)
+    $('#playback-progress').click(function(event)
     {
         // Calculate mouse position on the progress bar.
         var x = event.pageX - $(this).offset().left;

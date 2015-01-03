@@ -124,7 +124,7 @@ body
     float: right;
 }
 
-#playback-progress .progress
+#playback-progress
 {
     margin-bottom: 5px;
 }
