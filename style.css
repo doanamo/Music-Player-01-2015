@@ -91,10 +91,12 @@ body
     float: left;
 }
 
-#volume-panel p
+#volume-percentage
 {
     float: right;
+    width: 50px;
     padding-left: 15px;
+    text-align: right;
 }
 
 /*
