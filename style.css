@@ -66,6 +66,38 @@ body
 }
 
 /*
+    Volume Panel
+*/
+
+#volume-panel
+{
+    padding: 10px 15px;
+
+    position: fixed;
+    top: 44px;
+    right: 82px;
+    
+    display: none;
+}
+
+#volume-panel *
+{
+    margin: 0px;
+}
+
+#volume-panel .progress
+{
+    width: 220px;
+    float: left;
+}
+
+#volume-panel p
+{
+    float: right;
+    padding-left: 15px;
+}
+
+/*
     Playback Panel
 */
 

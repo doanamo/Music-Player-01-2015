@@ -149,6 +149,20 @@ var main = function()
     };
 
     // Application control.
+    $('#application-volume').click(function()
+    {
+        if(!$(this).hasClass('active'))
+        {
+            $(this).addClass('active');
+            $('#volume-panel').show();
+        }
+        else
+        {
+            $(this).removeClass('active');
+            $('#volume-panel').hide();
+        }
+    });
+    
     $('#application-close').click(function()
     {
         window.close();
