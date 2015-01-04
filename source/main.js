@@ -8,6 +8,7 @@ var window = require('nw.gui').Window.get();
 var gui = new function()
 {
     this.draggingPlaybackBar = false;
+    this.draggingVolumeSlider = false;
 };
 
 var audio = new function()
@@ -184,6 +185,15 @@ var main = function()
                 $('#playback-progress .progress-bar').css('width', '0%');
             }
         }
+        
+        if(gui.draggingVolumeSlider)
+        {
+            // Set interface state.
+            gui.draggingVolumeSlider = false;
+            
+            // Restore transition effect.
+            $('#volume-slider .progress-bar').removeClass('no-transition');
+        }
     });
     
     $(document).mousemove(function(event)
@@ -201,6 +211,17 @@ var main = function()
             
             // Update progress bar.
             $('#playback-progress .progress-bar').css('width', alpha * 100 + '%');
+        }
+        
+        if(gui.draggingVolumeSlider)
+        {
+            // Calculate mouse position on the slider.
+            var x = event.pageX - $('#volume-slider').offset().left;
+            var alpha = x / $('#volume-slider').width();
+            alpha = Math.clamp(alpha, 0.0, 1.0);
+            
+            // Set audio volume.
+            audio.setVolume(alpha * 100);
         }
     });
 
@@ -266,8 +287,14 @@ var main = function()
     });
     
     // Volume slider.
-    $('#volume-slider').click(function(event)
+    $('#volume-slider').mousedown(function(event)
     {
+        // Set interface state.
+        gui.draggingVolumeSlider = true;
+        
+        // Disable transition effect.
+        $('#volume-slider .progress-bar').addClass('no-transition');
+    
         // Prevent selection.
         return false;
     });
