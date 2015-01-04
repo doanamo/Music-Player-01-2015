@@ -119,6 +119,24 @@ var audio = new function()
         // Update volume slider.
         $('#volume-slider .progress-bar').css('width', this.volume + '%');
         $('#volume-percentage').text(this.volume + '%');
+        
+        // Change icon depending on volume.
+        $('#volume-icon').removeClass();
+        
+        if(this.volume == 0)
+        {
+            $('#volume-icon').addClass('glyphicon glyphicon-volume-off');
+        }
+        else
+        if(this.volume < 50)
+        {
+            $('#volume-icon').addClass('glyphicon glyphicon-volume-down');
+        }
+        else
+        if(this.volume >= 50)
+        {
+            $('#volume-icon').addClass('glyphicon glyphicon-volume-up');
+        }
     };
     
     this.setTime = function(seconds)
