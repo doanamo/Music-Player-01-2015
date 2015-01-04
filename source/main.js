@@ -3,8 +3,6 @@ Math.clamp = function(value, min, max)
     return Math.min(Math.max(value, min), max);
 };
 
-var window = require('nw.gui').Window.get();
-
 var gui = new function()
 {
     this.draggingPlaybackBar = false;
@@ -169,7 +167,7 @@ var audio = new function()
     }
 };
 
-var main = function()
+module.exports = function()
 {
     // Window events.
     window.ondragover = function(event)
@@ -188,7 +186,7 @@ var main = function()
     };
     
     // Page events.
-    $(document).mouseup(function(event)
+    $(window.document).mouseup(function(event)
     {
         if(gui.draggingPlaybackBar)
         {
@@ -215,7 +213,7 @@ var main = function()
         }
     });
     
-    $(document).mousemove(function(event)
+    $(window.document).mousemove(function(event)
     {
         if(gui.draggingPlaybackBar)
         {
@@ -329,5 +327,3 @@ var main = function()
         audio.setVolume(alpha * 100);
     });
 };
-
-$(document).ready(main);
