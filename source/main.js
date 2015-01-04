@@ -183,6 +183,22 @@ module.exports = function()
     };
     
     // Page events.
+    $(window.document).mousedown(function(event)
+    {
+        // Hide volume panel if clicked outside of it.
+        if($('#volume-panel').is(':visible'))
+        {
+            var onButton = $(event.target).closest('#application-volume').length;
+            var onPanel = $(event.target).closest('#volume-panel').length;
+        
+            if(!onButton && !onPanel)
+            {
+                $('#application-volume').removeClass('active');
+                $('#volume-panel').hide();
+            }
+        }
+    });
+    
     $(window.document).mouseup(function(event)
     {
         if(gui.draggingPlaybackBar)
