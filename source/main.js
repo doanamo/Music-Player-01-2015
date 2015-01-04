@@ -23,6 +23,7 @@ var audio = new function()
             return;
             
         // Release the current sound track.
+        this.stop();
         this.sound = null;
         
         // Load the sound file.
@@ -35,7 +36,7 @@ var audio = new function()
         this.sound.setVolume(this.volume);
 
         // Play the sound track.
-        this.sound.play();
+        this.play();
         
         // Set sound track name.
         var name = file.name.replace(/\.[^/.]+$/, "");
