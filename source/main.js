@@ -100,7 +100,7 @@ audio = new function()
             this.sound.setVolume(percentage);
         }
         
-        gui.volumePanel.refresh();
+        gui.volumePanel.onVolumeChange(percentage);
     };
     
     this.setTime = function(seconds)

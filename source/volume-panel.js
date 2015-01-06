@@ -29,26 +29,26 @@ module.exports = new function()
         });
     };
     
-    this.refresh = function()
+    this.onVolumeChange = function(percentage)
     {
         // Update volume slider.
-        $('#volume-slider .progress-bar').css('width', audio.volume + '%');
+        $('#volume-slider .progress-bar').css('width', percentage + '%');
         $('#volume-percentage').text(audio.volume + '%');
         
         // Change icon depending on volume.
         $('#volume-icon').removeClass();
         
-        if(audio.volume == 0)
+        if(percentage == 0)
         {
             $('#volume-icon').addClass('glyphicon glyphicon-volume-off');
         }
         else
-        if(audio.volume < 50)
+        if(percentage < 50)
         {
             $('#volume-icon').addClass('glyphicon glyphicon-volume-down');
         }
         else
-        if(audio.volume >= 50)
+        if(percentage >= 50)
         {
             $('#volume-icon').addClass('glyphicon glyphicon-volume-up');
         }
