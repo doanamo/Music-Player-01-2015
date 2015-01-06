@@ -30,6 +30,13 @@ module.exports = new function()
         });
     };
     
+    this.setTrackName = function(filename)
+    {
+        // Set file name as track name but remove extension.
+        var name = filename.replace(/\.[^/.]+$/, "");
+        $('#playback-name').text(name);
+    };
+    
     this.onDurationChange = function(sound)
     {
         // Some metadata might not be available immediately after opening a sound track.
