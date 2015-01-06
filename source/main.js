@@ -1,12 +1,19 @@
 require("./utility.js");
 
-var gui = new function()
+gui = new function()
 {
+    var self = this;
+    
     this.draggingPlaybackBar = false;
-    this.draggingVolumeSlider = false;
+    
+    this.initialize = function()
+    {
+        self.volumePanel = require("./volume-panel.js");
+        self.volumePanel.initialize();
+    };
 };
 
-var audio = new function()
+audio = new function()
 {
     this.sound = null;
     this.volume = 100;
@@ -112,27 +119,7 @@ var audio = new function()
             this.sound.setVolume(percentage);
         }
         
-        // Update volume slider.
-        $('#volume-slider .progress-bar').css('width', this.volume + '%');
-        $('#volume-percentage').text(this.volume + '%');
-        
-        // Change icon depending on volume.
-        $('#volume-icon').removeClass();
-        
-        if(this.volume == 0)
-        {
-            $('#volume-icon').addClass('glyphicon glyphicon-volume-off');
-        }
-        else
-        if(this.volume < 50)
-        {
-            $('#volume-icon').addClass('glyphicon glyphicon-volume-down');
-        }
-        else
-        if(this.volume >= 50)
-        {
-            $('#volume-icon').addClass('glyphicon glyphicon-volume-up');
-        }
+        gui.volumePanel.refresh();
     };
     
     this.setTime = function(seconds)
@@ -166,6 +153,9 @@ var audio = new function()
 
 module.exports = function()
 {
+    // Initialize interface.
+    gui.initialize();
+
     // Window events.
     window.ondragover = function(event)
     {
@@ -194,20 +184,29 @@ module.exports = function()
     window.onresize();
     
     // Page events.
+    $(window.document).mousemove(function(event)
+    {
+        if(gui.draggingPlaybackBar)
+        {
+            // Calculate mouse position on the progress bar.
+            var x = event.pageX - $('#playback-progress').offset().left;
+            var alpha = x / $('#playback-progress').width();
+            alpha = Math.clamp(alpha, 0.0, 1.0);
+            
+            // Reflect time of dragged progress bar.
+            var duration = audio.getDuration();
+            $('#playback-time .current').text(buzz.toTimer(duration * alpha));
+            
+            // Update progress bar.
+            $('#playback-progress .progress-bar').css('width', alpha * 100 + '%');
+        }
+        
+        gui.volumePanel.onMouseMove(event);
+    });
+    
     $(window.document).mousedown(function(event)
     {
-        // Hide volume panel if clicked outside of it.
-        if($('#volume-panel').is(':visible'))
-        {
-            var onButton = $(event.target).closest('#application-volume').length;
-            var onPanel = $(event.target).closest('#volume-panel').length;
-        
-            if(!onButton && !onPanel)
-            {
-                $('#application-volume').removeClass('active');
-                $('#volume-panel').hide();
-            }
-        }
+        gui.volumePanel.onMouseDown(event);
     });
     
     $(window.document).mouseup(function(event)
@@ -226,44 +225,8 @@ module.exports = function()
                 $('#playback-progress .progress-bar').css('width', '0%');
             }
         }
-        
-        if(gui.draggingVolumeSlider)
-        {
-            // Set interface state.
-            gui.draggingVolumeSlider = false;
-            
-            // Restore transition effect.
-            $('#volume-slider .progress-bar').removeClass('no-transition');
-        }
-    });
-    
-    $(window.document).mousemove(function(event)
-    {
-        if(gui.draggingPlaybackBar)
-        {
-            // Calculate mouse position on the progress bar.
-            var x = event.pageX - $('#playback-progress').offset().left;
-            var alpha = x / $('#playback-progress').width();
-            alpha = Math.clamp(alpha, 0.0, 1.0);
-            
-            // Reflect time of dragged progress bar.
-            var duration = audio.getDuration();
-            $('#playback-time .current').text(buzz.toTimer(duration * alpha));
-            
-            // Update progress bar.
-            $('#playback-progress .progress-bar').css('width', alpha * 100 + '%');
-        }
-        
-        if(gui.draggingVolumeSlider)
-        {
-            // Calculate mouse position on the slider.
-            var x = event.pageX - $('#volume-slider').offset().left;
-            var alpha = x / $('#volume-slider').width();
-            alpha = Math.clamp(alpha, 0.0, 1.0);
-            
-            // Set audio volume.
-            audio.setVolume(alpha * 100);
-        }
+
+        gui.volumePanel.onMouseUp(event);
     });
 
     // Application control.
@@ -272,12 +235,12 @@ module.exports = function()
         if(!$(this).hasClass('active'))
         {
             $(this).addClass('active');
-            $('#volume-panel').show();
+            gui.volumePanel.show();
         }
         else
         {
             $(this).removeClass('active');
-            $('#volume-panel').hide();
+            gui.volumePanel.hide();
         }
     });
     
@@ -325,29 +288,5 @@ module.exports = function()
         // Change playback position.
         audio.setPercent(alpha * 100);
         audio.play();
-    });
-    
-    // Volume slider.
-    $('#volume-slider').mousedown(function(event)
-    {
-        // Set interface state.
-        gui.draggingVolumeSlider = true;
-        
-        // Disable transition effect.
-        $('#volume-slider .progress-bar').addClass('no-transition');
-    
-        // Prevent selection.
-        return false;
-    });
-    
-    $('#volume-slider').click(function(event)
-    {
-        // Calculate mouse position on the slider.
-        var x = event.pageX - $(this).offset().left;
-        var alpha = x / $(this).width();
-        alpha = Math.clamp(alpha, 0.0, 1.0);
-        
-        // Set audio volume.
-        audio.setVolume(alpha * 100);
     });
 };
