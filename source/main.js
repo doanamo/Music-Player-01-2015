@@ -1,18 +1,6 @@
 require("./utility.js");
 
-gui = new function()
-{
-    var self = this;
-    
-    this.initialize = function()
-    {
-        self.volumePanel = require("./volume-panel.js");
-        self.playbackPanel = require("./playback-panel.js");
-        
-        self.volumePanel.initialize();
-        self.playbackPanel.initialize();
-    };
-};
+ui = require("./user-interface.js");
 
 audio = new function()
 {
@@ -48,22 +36,22 @@ audio = new function()
         // Set playback event handlers.
         this.sound.bind("durationchange", function()
         {
-            gui.playbackPanel.onDurationChange(this);
+            ui.playbackPanel.onDurationChange(this);
         });
         
         this.sound.bind("playing", function()
         {
-            gui.playbackPanel.onPlay();
+            ui.playbackPanel.onPlay();
         });
         
         this.sound.bind("pause", function()
         {
-            gui.playbackPanel.onPause();
+            ui.playbackPanel.onPause();
         });
         
         this.sound.bind("timeupdate", function()
         {
-            gui.playbackPanel.onTimeUpdate(this);
+            ui.playbackPanel.onTimeUpdate(this);
         });
     };
     
@@ -100,7 +88,7 @@ audio = new function()
             this.sound.setVolume(percentage);
         }
         
-        gui.volumePanel.onVolumeChange(percentage);
+        ui.volumePanel.onVolumeChange(percentage);
     };
     
     this.setTime = function(seconds)
@@ -134,88 +122,6 @@ audio = new function()
 
 module.exports = function()
 {
-    // Initialize interface.
-    gui.initialize();
-
-    // Window events.
-    window.ondragover = function(event)
-    {
-        event.preventDefault();
-        return false;
-    };
-    
-    window.ondrop = function(event)
-    {
-        event.preventDefault();
-
-        audio.load(event.dataTransfer.files[0]);
-        
-        return false;
-    };
-    
-    window.onresize = function()
-    {
-        // Resize middle panel to fill the remaining space.
-        var headerHeight = $('#window .panel-heading:first-child').outerHeight();
-        var playbackHeight = $('#playback-panel').outerHeight();
-    
-        $('#tracklist-panel').css('height', window.innerHeight - headerHeight - playbackHeight);
-    };
-    
-    // Call resize handler once.
-    window.onresize();
-    
-    // Page events.
-    $(window.document).mousemove(function(event)
-    {
-        gui.volumePanel.onMouseMove(event);
-        gui.playbackPanel.onMouseMove(event);
-    });
-    
-    $(window.document).mousedown(function(event)
-    {
-        gui.volumePanel.onMouseDown(event);
-    });
-    
-    $(window.document).mouseup(function(event)
-    {
-        gui.volumePanel.onMouseUp(event);
-        gui.playbackPanel.onMouseUp(event);
-    });
-
-    // Application control.
-    $('#application-volume').click(function()
-    {
-        if(!$(this).hasClass('active'))
-        {
-            $(this).addClass('active');
-            gui.volumePanel.show();
-        }
-        else
-        {
-            $(this).removeClass('active');
-            gui.volumePanel.hide();
-        }
-    });
-    
-    $('#application-close').click(function()
-    {
-        window.close();
-    });
-    
-    // Playback control.
-    $('#playback-stop').click(function()
-    {
-        audio.stop();
-    });
-    
-    $('#playback-pause').click(function()
-    {
-        audio.pause();
-    });
-    
-    $('#playback-play').click(function()
-    {
-        audio.play();
-    });
+    // Initialize user interface.
+    ui.initialize();
 };
