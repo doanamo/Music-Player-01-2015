@@ -181,6 +181,7 @@ module.exports = function()
         $('#tracklist-panel').css('height', window.innerHeight - headerHeight - playbackHeight);
     };
     
+    // Call resize handler once.
     window.onresize();
     
     // Page events.
