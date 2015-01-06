@@ -182,6 +182,17 @@ module.exports = function()
         return false;
     };
     
+    window.onresize = function()
+    {
+        // Resize middle panel to fill the remaining space.
+        var headerHeight = $('#window .panel-heading:first-child').outerHeight();
+        var playbackHeight = $('#playback-panel').outerHeight();
+    
+        $('#tracklist-panel').css('height', window.innerHeight - headerHeight - playbackHeight);
+    };
+    
+    window.onresize();
+    
     // Page events.
     $(window.document).mousedown(function(event)
     {

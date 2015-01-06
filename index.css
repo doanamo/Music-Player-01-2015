@@ -24,7 +24,7 @@ body
 }
 
 /*
-    Window Title
+    Window
 */
 
 #window .panel-heading
@@ -65,6 +65,16 @@ body
 {
 }
 
+#window .panel-body
+{
+    padding: 0px;
+}
+
+#window .panel-body > .list-group > li
+{
+    border-width: 0px;
+}
+
 /*
     Volume Panel
 */
@@ -100,11 +110,24 @@ body
 }
 
 /*
+    Tracklist panel
+*/
+
+#tracklist-panel
+{
+    overflow-y: auto;
+}
+
+/*
     Playback Panel
 */
 
 #playback-panel
 {
+    border-top-width: 1px !important; 
+
+    bottom: 0px;
+    
     position: absolute;
     width: 100%;
     bottom: 0px;
