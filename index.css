@@ -118,6 +118,19 @@ body
     overflow-y: auto;
 }
 
+#tracklist-panel ul li
+{
+    -webkit-user-select: none;
+}
+
+#tracklist-panel ul li div
+{
+    -webkit-user-select: auto;
+    
+    display: inline-block;
+    width: auto;
+}
+
 /*
     Playback Panel
 */

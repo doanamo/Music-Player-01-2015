@@ -25,14 +25,18 @@ module.exports = new function()
         var element = $('<li>');
         element.addClass('list-group-item');
         element.data('filepath', filepath);
-        element.text(name);
+        element.append($('<div>').text(name));
         
-        element.click(function(event)
+        element.dblclick(function(event)
         {
+            // Load track list element.
             audio.load($(this).data('filepath'));
+            
+            // Remove selection.
+            window.getSelection().removeAllRanges();
         });
         
         // Add element to the list.
-        $('#tracklist-elements').append(element);
+        $('#tracklist-panel ul').append(element);
     };
 };
