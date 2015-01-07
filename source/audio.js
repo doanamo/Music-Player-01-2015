@@ -8,10 +8,10 @@ module.exports = new function()
     {
     };
 
-    this.load = function(file)
+    this.load = function(filepath)
     {
         // Validate arguments.
-        if(file == null)
+        if(!filepath)
             return;
             
         // Release the current sound track.
@@ -19,9 +19,9 @@ module.exports = new function()
         self.sound = null;
         
         // Load the sound file.
-        self.sound = new buzz.sound(file.path);
+        self.sound = new buzz.sound(filepath);
         
-        if(self.sound == null)
+        if(!self.sound)
             return;
             
         // Set the volume.
@@ -31,7 +31,7 @@ module.exports = new function()
         self.play();
         
         // Set sound track name.
-        ui.playbackPanel.setTrackName(file.name);
+        ui.playbackPanel.setTrackName(filepath);
         
         // Set playback event handlers.
         self.sound.bind("durationchange", function()

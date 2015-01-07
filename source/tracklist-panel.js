@@ -9,16 +9,27 @@ module.exports = new function()
             var file = event.originalEvent.dataTransfer.files[0];
         
             // Add dropped track file.
-            self.addTrack(file);
+            self.addTrack(file.path);
         });
     };
     
-    this.addTrack = function(file)
+    this.addTrack = function(filepath)
     {
-        // Get file name without extension.
-        var name = file.name.replace(/\.[^/.]+$/, "");
+        // Get file name without extension from full path.
+        var name = filepath.replace(/^.*[\\\/]/, "").replace(/\.[^/.]+$/, "");
         
-        // Add track to the list.
-        $('#tracklist-elements').append('<li class="list-group-item">' + name + '</li>');
+        // Create list element.
+        var element = $('<li>');
+        element.addClass('list-group-item');
+        element.data('filepath', filepath);
+        element.text(name);
+        
+        element.click(function(event)
+        {
+            audio.load($(this).data('filepath'));
+        });
+        
+        // Add element to the list.
+        $('#tracklist-elements').append(element);
     };
 };

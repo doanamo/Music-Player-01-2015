@@ -10,7 +10,7 @@ module.exports = new function()
             var file = event.originalEvent.dataTransfer.files[0];
         
             // Load dropped sound file.
-            audio.load(file);
+            audio.load(file.path);
         });
     
         $('#playback-progress').mousedown(function(event)
@@ -38,10 +38,12 @@ module.exports = new function()
         });
     };
     
-    this.setTrackName = function(filename)
+    this.setTrackName = function(filepath)
     {
-        // Set file name as track name but remove extension.
-        var name = filename.replace(/\.[^/.]+$/, "");
+        // Get file name without extension from full path.
+        var name = filepath.replace(/^.*[\\\/]/, "").replace(/\.[^/.]+$/, "");
+        
+        // Set the element text.
         $('#playback-name').text(name);
     };
     
