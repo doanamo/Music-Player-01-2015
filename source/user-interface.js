@@ -28,10 +28,13 @@ module.exports = new function()
         window.onresize = function()
         {
             // Resize middle panel to fill the remaining space.
+            var windowHeight = $('#window').outerHeight();
             var headerHeight = $('#window .panel-heading:first-child').outerHeight();
             var playbackHeight = $('#playback-panel').outerHeight();
-        
-            $('#tracklist-panel').css('height', window.innerHeight - headerHeight - playbackHeight);
+            
+            // Calculate panel size.
+            // Substract 2 due to panel being a list item with negative margin (?).
+            $('#tracklist-panel').css('height', windowHeight - headerHeight - playbackHeight - 2);
         };
         
         // Call resize handler once.
