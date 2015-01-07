@@ -10,4 +10,10 @@ module.exports = function()
     
     // Initialize audio playback.
     audio.initialize();
+    
+    //
+    for(var i = 0; i < 5; ++i)
+    {
+        $('#tracklist-elements').append('<li class="list-group-item">Track</li>');
+    }
 };
