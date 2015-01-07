@@ -13,9 +13,18 @@ body
     margin:0px;
 }
 
+/*
+    Window
+*/
+
 #window .panel-heading
 {
     -webkit-app-region: drag;
+
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #window .panel-heading button
@@ -23,16 +32,16 @@ body
     -webkit-app-region: no-drag;
 }
 
-/*
-    Window
-*/
-
-#window .panel-heading
+.no-drag-button-fix
 {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    /*
+        Set a padding border to give enclosing elements a chance to receive
+        outside mouse move events, that are normally blocked by 'no-drag' style
+        set on parent, to prevent certain states getting stuck (ex. hover).
+    */
+    
+    -webkit-app-region: no-drag;
+    padding: 1px 1px;
 }
 
 #window-title
