@@ -32,6 +32,10 @@ module.exports = new function()
             // Load track list element.
             audio.load($(this).data('filepath'));
             
+            // Set track style as currently playing.
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+            
             // Remove selection.
             window.getSelection().removeAllRanges();
         });
