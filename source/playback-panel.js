@@ -7,8 +7,10 @@ module.exports = new function()
     {
         $('#playback-panel').on('drop', function(event)
         {
+            var file = event.originalEvent.dataTransfer.files[0];
+        
             // Load dropped sound file.
-            audio.load(event.originalEvent.dataTransfer.files[0]);
+            audio.load(file);
         });
     
         $('#playback-progress').mousedown(function(event)

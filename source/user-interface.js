@@ -6,10 +6,12 @@ module.exports = new function()
     {
         // Get interface element instances.
         self.volumePanel = require("./volume-panel.js");
+        self.tracklistPanel = require("./tracklist-panel.js");
         self.playbackPanel = require("./playback-panel.js");
         
         // Initialize interface elements.
         self.volumePanel.initialize();
+        self.tracklistPanel.initialize();
         self.playbackPanel.initialize();
         
         // Window events.
