@@ -25,7 +25,7 @@ module.exports = new function()
             return;
             
         // Set the volume.
-        self.sound.setVolume(this.volume);
+        self.sound.setVolume(self.volume);
 
         // Play the sound track.
         self.play();
