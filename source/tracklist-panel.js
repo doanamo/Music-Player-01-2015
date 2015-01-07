@@ -6,10 +6,13 @@ module.exports = new function()
     {
         $('#tracklist-panel').on('drop', function(event)
         {
-            var file = event.originalEvent.dataTransfer.files[0];
+            var files = event.originalEvent.dataTransfer.files;
         
-            // Add dropped track file.
-            self.addTrack(file.path);
+            // Add dropped track files.
+            for(var i = 0; i < files.length; ++i)
+            {
+                self.addTrack(files[i].path);
+            }
         });
     };
     
