@@ -5,6 +5,12 @@ module.exports = new function()
     
     this.initialize = function()
     {
+        $('#playback-panel').on('drop', function(event)
+        {
+            // Load dropped sound file.
+            audio.load(event.originalEvent.dataTransfer.files[0]);
+        });
+    
         $('#playback-progress').mousedown(function(event)
         {
             // Set progress bar state.

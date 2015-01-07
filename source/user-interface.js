@@ -16,16 +16,11 @@ module.exports = new function()
         window.ondragover = function(event)
         {
             event.preventDefault();
-            return false;
         };
         
         window.ondrop = function(event)
         {
-            // Load dropped sound file.
-            audio.load(event.dataTransfer.files[0]);
-            
             event.preventDefault();
-            return false;
         };
         
         window.onresize = function()
