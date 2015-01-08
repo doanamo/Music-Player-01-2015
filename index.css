@@ -11,6 +11,9 @@ body
     left:0px;
     right:0px;
     margin:0px;
+    
+    border-radius: 0px;
+    border-width: 0px;
 }
 
 /*
@@ -19,43 +22,10 @@ body
 
 #window .panel-heading
 {
-    -webkit-app-region: drag;
-
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
-}
-
-#window .panel-heading button
-{
-    -webkit-app-region: no-drag;
-}
-
-.no-drag-button-fix
-{
-    /*
-        Set a padding border to give enclosing elements a chance to receive
-        outside mouse move events, that are normally blocked by 'no-drag' style
-        set on parent, to prevent certain states getting stuck (ex. hover).
-    */
-    
-    -webkit-app-region: no-drag;
-    padding: 1px 1px;
-}
-
-#window-title
-{
-    float: left;
-    padding-right: 20px;
-}
-
-#window-title .panel-title
-{
-    font-weight: bold;
-    
-    position: relative;
-    top: 5px;
 }
 
 #application-control
@@ -67,7 +37,6 @@ body
 #playback-control
 {
     text-align: center;
-    width: 85%;
 }
 
 #playback-control *
@@ -94,7 +63,7 @@ body
 
     position: fixed;
     top: 44px;
-    right: 82px;
+    right: 48px;
     
     display: none;
 }

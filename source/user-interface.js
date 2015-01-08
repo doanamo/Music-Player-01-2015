@@ -20,7 +20,7 @@ module.exports = new function()
         var headerHeight = $('#window .panel-heading:first-child').outerHeight();
         var playbackHeight = $('#playback-panel').outerHeight();
         
-        window.nwDispatcher.requireNwGui().Window.get().setMinimumSize(500, headerHeight + playbackHeight + 1);
+        window.nwDispatcher.requireNwGui().Window.get().setMinimumSize(500, headerHeight + playbackHeight - 1);
         
         // Window events.
         window.ondragover = function(event)
@@ -39,10 +39,7 @@ module.exports = new function()
             var windowHeight = $('#window').outerHeight();
             var headerHeight = $('#window .panel-heading:first-child').outerHeight();
             var playbackHeight = $('#playback-panel').outerHeight();
-            
-            // Calculate middle panel size and it's children.
-            // Substract 2 due to panel being a list item with negative margin (?).
-            var middleHeight = windowHeight - headerHeight - playbackHeight - 2;
+            var middleHeight = windowHeight - headerHeight - playbackHeight;
             
             $('#middle-panel').css('height', middleHeight);
         };
@@ -97,11 +94,6 @@ module.exports = new function()
                 $(this).removeClass('active');
                 self.volumePanel.hide();
             }
-        });
-        
-        $('#application-close').click(function()
-        {
-            window.close();
         });
     };
 };

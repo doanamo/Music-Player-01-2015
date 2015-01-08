@@ -2,6 +2,8 @@
     "name": "node-webkit",
     "main": "../index.html",
     
+    "chromium-args": "--disable-gpu",
+    
     "window":
     {
         "title": "Music Player",
@@ -11,8 +13,6 @@
         "width": 1024,
         "height": 576,
     
-        "toolbar": true,
-        "frame": true,
-        "transparent": false
+        "toolbar": true
     }
 }
