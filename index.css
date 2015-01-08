@@ -125,14 +125,29 @@ body
 #tracklist-panel
 {
     overflow-y: auto;
+    
+    padding: 10px 10px;
 }
 
-#tracklist-panel ul li
+#tracklist-panel .tracklist-entry
 {
     -webkit-user-select: none;
+    
+    transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
+    
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
-#tracklist-panel ul li div
+#tracklist-panel .tracklist-entry.active
+{
+    transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#tracklist-panel .tracklist-entry div
 {
     -webkit-user-select: auto;
     

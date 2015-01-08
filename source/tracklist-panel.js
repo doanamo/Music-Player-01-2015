@@ -24,6 +24,7 @@ module.exports = new function()
         // Create list element.
         var element = $('<li>');
         element.addClass('list-group-item');
+        element.addClass('tracklist-entry');
         element.data('filepath', filepath);
         element.append($('<div>').text(name));
         
