@@ -16,6 +16,19 @@ module.exports = new function()
         });
     };
     
+    this.playTrack = function(element)
+    {
+        if(!element)
+            return;
+            
+        // Load track list element.
+        audio.load($(element).data('filepath'));
+        
+        // Set track style as currently playing.
+        $(element).siblings().removeClass('active');
+        $(element).addClass('active');
+    };
+    
     this.addTrack = function(filepath)
     {
         // Get file name without extension from full path.
@@ -30,12 +43,8 @@ module.exports = new function()
         
         element.dblclick(function(event)
         {
-            // Load track list element.
-            audio.load($(this).data('filepath'));
-            
-            // Set track style as currently playing.
-            $(this).siblings().removeClass('active');
-            $(this).addClass('active');
+            // Play this track.
+            self.playTrack(this);
             
             // Remove selection.
             window.getSelection().removeAllRanges();
@@ -46,5 +55,25 @@ module.exports = new function()
         
         // Prevent cyclic reference.
         element = null;
+    };
+    
+    this.onEnded = function()
+    {
+        // Get the track that just finished playing.
+        var current = $('#tracklist-panel .tracklist-entry.active');
+        
+        if(!current)
+            return;
+        
+        // Get the next track on the list.
+        var next = current.next();
+    
+        if(next.length === 0)
+        {
+            next = current.siblings().first();
+        }
+        
+        // Play next track.
+        self.playTrack(next);
     };
 };

@@ -53,6 +53,11 @@ module.exports = new function()
         {
             ui.playbackPanel.onTimeUpdate(this);
         });
+        
+        self.sound.bind("ended", function()
+        {
+            ui.tracklistPanel.onEnded();
+        });
     };
     
     this.stop = function()
