@@ -40,9 +40,11 @@ module.exports = new function()
             var headerHeight = $('#window .panel-heading:first-child').outerHeight();
             var playbackHeight = $('#playback-panel').outerHeight();
             
-            // Calculate panel size.
+            // Calculate middle panel size and it's children.
             // Substract 2 due to panel being a list item with negative margin (?).
-            $('#tracklist-panel').css('height', windowHeight - headerHeight - playbackHeight - 2);
+            var middleHeight = windowHeight - headerHeight - playbackHeight - 2;
+            
+            $('#middle-panel').css('height', middleHeight);
         };
         
         // Call resize handler once.

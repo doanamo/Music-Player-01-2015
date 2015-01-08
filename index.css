@@ -119,24 +119,68 @@ body
 }
 
 /*
-    Tracklist panel
+    Middle Panel
+*/
+
+#middle-panel
+{
+    padding: 0px 0px;
+}
+
+/*
+    Playlist Panel
+*/
+
+#playlist-panel
+{
+    float: left;
+    width: 25%;
+    height: 100%;
+    min-width: 160px;
+    max-width: 240px;
+    
+    overflow-y: auto;
+    
+    border-right: 1px solid #ddd;
+}
+
+/*
+    Tracklist Panel
 */
 
 #tracklist-panel
 {
+    height: 100%;
+
     overflow-y: auto;
-    
-    padding: 10px 10px;
+
+    padding: 0px 0px;
 }
 
 #tracklist-panel .tracklist-entry
 {
     -webkit-user-select: none;
     
+    border-left-width: 0px;
+    border-right-width: 1px;
+    
     transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
     
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+#tracklist-panel .tracklist-entry:first-child
+{
+    border-top-width: 0px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+#tracklist-panel .tracklist-entry:last-child
+{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 #tracklist-panel .tracklist-entry.active
