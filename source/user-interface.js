@@ -4,6 +4,8 @@ module.exports = new function()
     
     this.initialize = function()
     {
+        window.nwDispatcher.requireNwGui();
+    
         // Get interface element instances.
         self.volumePanel = require("./volume-panel.js");
         self.tracklistPanel = require("./tracklist-panel.js");
@@ -13,6 +15,12 @@ module.exports = new function()
         self.volumePanel.initialize();
         self.tracklistPanel.initialize();
         self.playbackPanel.initialize();
+        
+        // Set minimum window size.
+        var headerHeight = $('#window .panel-heading:first-child').outerHeight();
+        var playbackHeight = $('#playback-panel').outerHeight();
+        
+        window.nwDispatcher.requireNwGui().Window.get().setMinimumSize(500, headerHeight + playbackHeight + 1);
         
         // Window events.
         window.ondragover = function(event)
