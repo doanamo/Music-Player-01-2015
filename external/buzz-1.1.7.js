@@ -531,7 +531,10 @@
                     this.sound.preload = options.preload;
                 }
                 this.setVolume(options.volume);
-                buzz.sounds.push(this);
+                
+                // Don't remember every sound instance!
+                // This is a nasty memory leak...
+                /* buzz.sounds.push(this); */
             }
         },
         group: function(sounds) {
@@ -658,9 +661,11 @@
                 return array instanceof Array ? array : Array.prototype.slice.call(args);
             }
         },
+        /*
         all: function() {
             return new buzz.group(buzz.sounds);
         },
+        */
         isSupported: function() {
             return !!buzz.el.canPlayType;
         },

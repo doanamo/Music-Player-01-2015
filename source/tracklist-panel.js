@@ -43,5 +43,8 @@ module.exports = new function()
         
         // Add element to the list.
         $('#tracklist-panel ul').append(element);
+        
+        // Prevent cyclic reference.
+        element = null;
     };
 };
