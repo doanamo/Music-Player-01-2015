@@ -1,0 +1,29 @@
+#volume-panel
+{
+    padding: 10px 15px;
+
+    position: fixed;
+    top: 44px;
+    right: 48px;
+    
+    display: none;
+}
+
+#volume-panel > *
+{
+    margin: 0px;
+}
+
+#volume-slider
+{
+    width: 220px;
+    float: left;
+}
+
+#volume-percentage
+{
+    float: right;
+    width: 50px;
+    padding-left: 15px;
+    text-align: right;
+}

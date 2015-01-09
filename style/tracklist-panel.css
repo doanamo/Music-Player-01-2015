@@ -1,0 +1,49 @@
+#tracklist-panel
+{
+    padding: 0px 0px;
+    height: 100%;
+
+    overflow-y: auto;
+}
+
+#tracklist-panel .tracklist-entry
+{
+    -webkit-user-select: none;
+    
+    border-left-width: 0px;
+    border-right-width: 0px;
+    
+    transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
+    
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#tracklist-panel .tracklist-entry:first-child
+{
+    border-top-width: 0px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+#tracklist-panel .tracklist-entry:last-child
+{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+#tracklist-panel .tracklist-entry.active
+{
+    transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#tracklist-panel .tracklist-entry div
+{
+    -webkit-user-select: auto;
+    
+    display: inline-block;
+    width: auto;
+}

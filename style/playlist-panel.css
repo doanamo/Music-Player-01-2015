@@ -1,0 +1,12 @@
+#playlist-panel
+{
+    float: left;
+    width: 25%;
+    height: 100%;
+    min-width: 160px;
+    max-width: 240px;
+    
+    overflow-y: auto;
+    
+    border-right: 1px solid #ddd;
+}

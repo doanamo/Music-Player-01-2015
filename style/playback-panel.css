@@ -1,0 +1,29 @@
+#playback-panel
+{
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    
+    border-top-width: 1px !important;
+}
+
+#playback-info
+{
+    overflow: hidden;
+}
+
+#playback-info *
+{
+    display: inline-block;
+}
+
+#playback-time
+{
+    width: auto;
+    float: right;
+}
+
+#playback-progress
+{
+    margin-bottom: 5px;
+}
