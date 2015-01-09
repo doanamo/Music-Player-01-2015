@@ -70,7 +70,8 @@ module.exports = new function()
     
         if(next.length === 0)
         {
-            next = current.siblings().first();
+            var list = $('#tracklist-panel ul');
+            next = list.children(":first");
         }
         
         // Play next track.
