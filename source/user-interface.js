@@ -17,10 +17,10 @@ module.exports = new function()
         self.playbackPanel.initialize();
         
         // Set minimum window size.
-        var headerHeight = $('#window .panel-heading:first-child').outerHeight();
+        var controlHeight = $('#control-panel').outerHeight();
         var playbackHeight = $('#playback-panel').outerHeight();
         
-        nw.gui.Window.get().setMinimumSize(500, headerHeight + playbackHeight - 1);
+        nw.gui.Window.get().setMinimumSize(500, controlHeight + playbackHeight - 1);
         
         // Window events.
         window.ondragover = function(event)
@@ -37,9 +37,9 @@ module.exports = new function()
         {
             // Resize middle panel to fill the remaining space.
             var windowHeight = $('#window').outerHeight();
-            var headerHeight = $('#window .panel-heading:first-child').outerHeight();
+            var controlHeight = $('#control-panel').outerHeight();
             var playbackHeight = $('#playback-panel').outerHeight();
-            var middleHeight = windowHeight - headerHeight - playbackHeight;
+            var middleHeight = windowHeight - controlHeight - playbackHeight;
             
             $('#middle-panel').css('height', middleHeight);
         };
