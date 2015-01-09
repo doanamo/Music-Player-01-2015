@@ -23,6 +23,7 @@ body
 
 #main-panel > .panel-body > .list-group > li
 {
+    border-radius: 0px;
     border-width: 0px;
     margin: 0px;
 }
