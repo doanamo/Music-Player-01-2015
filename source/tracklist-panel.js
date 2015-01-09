@@ -133,7 +133,7 @@ module.exports = new function()
         
         // Set cursor position.
         $(track).siblings().removeClass('cursor');
-        $(track).addClass('cursor');
+        $(track).toggleClass('cursor');
     };
     
     this.playTrack = function(element)
