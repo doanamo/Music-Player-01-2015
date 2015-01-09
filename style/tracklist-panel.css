@@ -32,12 +32,40 @@
     border-bottom-left-radius: 0px;
 }
 
+#tracklist-panel li.cursor
+{
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    z-index: 3;
+}
+
 #tracklist-panel li.active
 {
     transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
 
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+#tracklist-panel li:hover
+{
+    background-color: #f5f5f5;
+}
+
+#tracklist-panel li.active:hover
+{
+    background-color: #296292;
+}
+
+#tracklist-panel li.selected
+{
+    background-color: #f5f5f5;
+}
+
+#tracklist-panel li.active.selected
+{
+    background-color: #296292;
 }
 
 #tracklist-panel li div

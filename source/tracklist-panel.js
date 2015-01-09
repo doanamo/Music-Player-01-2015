@@ -36,6 +36,17 @@ module.exports = new function()
             window.getSelection().removeAllRanges();
         });
         
+        element.click(function(event)
+        {
+            // Set selected state.
+            $(this).siblings().removeClass('selected');
+            $(this).toggleClass('selected');
+            
+            // Set cursor position.
+            $(this).siblings().removeClass('cursor');
+            $(this).addClass('cursor');
+        });
+        
         // Add element to the list.
         $('#tracklist-panel ul').append(element);
         
