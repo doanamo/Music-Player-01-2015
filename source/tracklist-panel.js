@@ -71,13 +71,20 @@ module.exports = new function()
             // Play this track.
             self.playTrack(this);
             
-            // Remove selection.
+            // Remove text selection.
             window.getSelection().removeAllRanges();
         });
         
         element.click(function(event)
         {
-            self.selectTrack(this);
+            // Select element.
+            self.selectTrack(this, event.ctrlKey);
+            
+            // Remove text selection if using multipl/range selection.
+            if(event.ctrlKey)
+            {
+                window.getSelection().removeAllRanges();
+            }
         });
         
         element.on('contextmenu', function(event)
@@ -108,13 +115,20 @@ module.exports = new function()
         $(element).remove();
     };
     
-    this.selectTrack = function(track)
+    this.selectTrack = function(track, add)
     {
         if(!track)
             return;
+            
+        add = defaultArgument(add, false);
     
         // Set selected state.
-        $(track).siblings().removeClass('selected');
+        if(!add)
+        {
+            // Remove all selection if we don't want to add.
+            $(track).siblings().removeClass('selected');
+        }
+        
         $(track).toggleClass('selected');
         
         // Set cursor position.
