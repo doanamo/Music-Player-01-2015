@@ -16,19 +16,6 @@ module.exports = new function()
         });
     };
     
-    this.playTrack = function(element)
-    {
-        if(!element)
-            return;
-            
-        // Load track list element.
-        audio.load($(element).data('filepath'));
-        
-        // Set track style as currently playing.
-        $(element).siblings().removeClass('active');
-        $(element).addClass('active');
-    };
-    
     this.addTrack = function(filepath)
     {
         // Get file name without extension from full path.
@@ -57,24 +44,78 @@ module.exports = new function()
         element = null;
     };
     
-    this.onEnded = function()
+    this.playTrack = function(element)
     {
-        // Get the track that just finished playing.
+        if(!element)
+            return;
+            
+        // Load track list element.
+        audio.load($(element).data('filepath'));
+        
+        // Set track style as currently playing.
+        $(element).siblings().removeClass('active');
+        $(element).addClass('active');
+    };
+    
+    this.playNext = function()
+    {
+        self.playTrack(self.getNext());
+    };
+    
+    this.playPrevious = function()
+    {
+        self.playTrack(self.getPrevious());
+    };
+    
+    this.getCurrent = function()
+    {
         var current = $('#tracklist-panel .tracklist-entry.active');
+        return current;
+    };
+    
+    this.getNext = function()
+    {
+        // Get current track.
+        var current = self.getCurrent();
         
         if(!current)
-            return;
-        
+            return null;
+            
         // Get the next track on the list.
         var next = current.next();
     
         if(next.length === 0)
         {
-            var list = $('#tracklist-panel ul');
+            var list = $('#tracklist-panel .list-group');
             next = list.children(":first");
         }
         
+        return next;
+    };
+    
+    this.getPrevious = function()
+    {
+        // Get current track.
+        var current = self.getCurrent();
+        
+        if(!current)
+            return null;
+            
+        // Get the previous track on the list.
+        var previous = current.prev();
+    
+        if(previous.length === 0)
+        {
+            var list = $('#tracklist-panel .list-group');
+            previous = list.children(":last");
+        }
+        
+        return previous;
+    };
+    
+    this.onEnded = function()
+    {
         // Play next track.
-        self.playTrack(next);
+        self.playTrack(self.getNext());
     };
 };

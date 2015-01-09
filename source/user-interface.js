@@ -80,6 +80,16 @@ module.exports = new function()
         {
             audio.play();
         });
+        
+        $('#playback-previous').click(function()
+        {
+            ui.tracklistPanel.playPrevious();
+        });
+        
+        $('#playback-next').click(function()
+        {
+            ui.tracklistPanel.playNext();
+        });
 
         // Application control.
         $('#application-volume').click(function()
