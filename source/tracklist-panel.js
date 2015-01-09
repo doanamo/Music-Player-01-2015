@@ -1,9 +1,11 @@
 module.exports = new function()
 {
     var self = this;
+    var menu = null;
     
     this.initialize = function()
     {
+        // Handle dropped files on track list.
         $('#tracklist-panel').on('drop', function(event)
         {
             var files = event.originalEvent.dataTransfer.files;
@@ -14,6 +16,43 @@ module.exports = new function()
                 self.addTrack(files[i].path);
             }
         });
+        
+        // Create track context menu.
+        self.menu = new nw.gui.Menu();
+        
+        self.menu.append(new nw.gui.MenuItem(
+        {
+            label: 'Play',
+            click: function()
+            {
+                var selected = $('#tracklist-panel .selected');
+                self.playTrack(selected.first());
+            }
+        }));
+        
+        self.menu.append(new nw.gui.MenuItem(
+        {
+            label: 'Queue',
+            enabled: false,
+            click: function()
+            {
+            },
+        }));
+        
+        self.menu.append(new nw.gui.MenuItem(
+        {
+            type: 'separator'
+        }));
+        
+        self.menu.append(new nw.gui.MenuItem(
+        {
+            label: 'Delete',
+            click: function()
+            {
+                var selected = $('#tracklist-panel .selected');
+                self.removeTrack(selected);
+            },
+        }));
     };
     
     this.addTrack = function(filepath)
@@ -38,13 +77,19 @@ module.exports = new function()
         
         element.click(function(event)
         {
-            // Set selected state.
-            $(this).siblings().removeClass('selected');
-            $(this).toggleClass('selected');
-            
-            // Set cursor position.
-            $(this).siblings().removeClass('cursor');
-            $(this).addClass('cursor');
+            self.selectTrack(this);
+        });
+        
+        element.on('contextmenu', function(event)
+        {
+            // Select track if not selected.
+            if(!$(this).hasClass('selected'))
+            {
+                self.selectTrack(this);
+            }
+        
+            // Open context menu.
+            self.menu.popup(event.pageX, event.pageY);
         });
         
         // Add element to the list.
@@ -52,6 +97,29 @@ module.exports = new function()
         
         // Prevent cyclic reference.
         element = null;
+    };
+    
+    this.removeTrack = function(element)
+    {
+        if(!element)
+            return;
+        
+        // Remove track from the list.
+        $(element).remove();
+    };
+    
+    this.selectTrack = function(track)
+    {
+        if(!track)
+            return;
+    
+        // Set selected state.
+        $(track).siblings().removeClass('selected');
+        $(track).toggleClass('selected');
+        
+        // Set cursor position.
+        $(track).siblings().removeClass('cursor');
+        $(track).addClass('cursor');
     };
     
     this.playTrack = function(element)
