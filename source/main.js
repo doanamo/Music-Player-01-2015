@@ -10,4 +10,7 @@ module.exports = function()
     
     // Initialize audio playback.
     audio.initialize();
+    
+    // Show the window.
+    nw.gui.Window.get().show();
 };

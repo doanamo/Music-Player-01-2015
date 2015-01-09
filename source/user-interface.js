@@ -20,7 +20,7 @@ module.exports = new function()
         var headerHeight = $('#window .panel-heading:first-child').outerHeight();
         var playbackHeight = $('#playback-panel').outerHeight();
         
-        window.nwDispatcher.requireNwGui().Window.get().setMinimumSize(500, headerHeight + playbackHeight - 1);
+        nw.gui.Window.get().setMinimumSize(500, headerHeight + playbackHeight - 1);
         
         // Window events.
         window.ondragover = function(event)

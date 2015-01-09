@@ -6,6 +6,7 @@
     
     "window":
     {
+        "show": false,
         "title": "Music Player",
         "icon": "",
     
