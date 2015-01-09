@@ -35,13 +35,13 @@ module.exports = new function()
         
         window.onresize = function()
         {
-            // Resize middle panel to fill the remaining space.
-            var windowHeight = $('#window').outerHeight();
+            // Resize view panel to fill the remaining space.
+            var mainHeight = $('#main-panel').outerHeight();
             var controlHeight = $('#control-panel').outerHeight();
             var playbackHeight = $('#playback-panel').outerHeight();
-            var middleHeight = windowHeight - controlHeight - playbackHeight;
             
-            $('#middle-panel').css('height', middleHeight);
+            var viewHeight = mainHeight - controlHeight - playbackHeight;
+            $('#view-panel').css('height', viewHeight);
         };
         
         // Call resize handler once.

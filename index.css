@@ -3,7 +3,7 @@ body
     background-color: rgba(0, 0, 0, 0);
 }
 
-#window
+#main-panel
 {
     position: fixed;
     top: 0px;
@@ -16,12 +16,12 @@ body
     border-width: 0px;
 }
 
-#window .panel-body
+#main-panel .panel-body
 {
     padding: 0px;
 }
 
-#window > .panel-body > .list-group > li
+#main-panel > .panel-body > .list-group > li
 {
     border-width: 0px;
     margin: 0px;
@@ -98,7 +98,7 @@ body
     Middle Panel
 */
 
-#middle-panel
+#view-panel
 {
     padding: 0px 0px;
 }
