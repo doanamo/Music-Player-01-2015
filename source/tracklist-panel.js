@@ -187,6 +187,11 @@ module.exports = new function()
         $(element).remove();
     };
     
+    this.selectAllTracks = function()
+    {
+        $('#tracklist-panel li').addClass('selected');
+    };
+    
     this.selectTrack = function(track, add, range)
     {
         if(!track)

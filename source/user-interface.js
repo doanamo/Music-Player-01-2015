@@ -76,6 +76,12 @@ module.exports = new function()
             self.playbackPanel.onMouseUp(event);
         });
         
+        $(window.document).bind('keydown', 'ctrl+a', function(event)
+        {
+            self.tracklistPanel.selectAllTracks();
+            return false;
+        });
+        
         // Playback control.
         $('#playback-stop').click(function()
         {
