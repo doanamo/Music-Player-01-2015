@@ -1,7 +1,7 @@
 module.exports = new function()
 {
     var self = this;
-    var draggingProgressBar = false;
+    this.draggingProgressBar = false;
     
     this.initialize = function()
     {

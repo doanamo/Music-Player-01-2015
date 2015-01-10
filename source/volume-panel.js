@@ -1,14 +1,14 @@
 module.exports = new function()
 {
     var self = this;
-    var draggingSlider = false;
+    this.draggingSlider = false;
     
     this.initialize = function()
     {
         $('#volume-slider').mousedown(function(event)
         {
             // Set slider state.
-            draggingSlider = true;
+            self.draggingSlider = true;
             
             // Disable transition effect.
             $('#volume-slider .progress-bar').addClass('no-transition');
@@ -67,7 +67,7 @@ module.exports = new function()
     
     this.onMouseMove = function(event)
     {
-        if(draggingSlider)
+        if(self.draggingSlider)
         {
             // Calculate mouse position on the slider.
             var x = event.pageX - $('#volume-slider').offset().left;
@@ -97,10 +97,10 @@ module.exports = new function()
     
     this.onMouseUp = function(event)
     {
-        if(draggingSlider)
+        if(self.draggingSlider)
         {
             // Set slider state.
-            draggingSlider = false;
+            self.draggingSlider = false;
             
             // Restore transition effect.
             $('#volume-slider .progress-bar').removeClass('no-transition');

@@ -1,7 +1,7 @@
 module.exports = new function()
 {
     var self = this;
-    var menu = null;
+    this.menu = null;
     
     this.initialize = function()
     {
