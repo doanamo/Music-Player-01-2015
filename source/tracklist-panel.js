@@ -149,11 +149,11 @@ module.exports = new function()
         
         element.click(function(event)
         {
-            // Select element.
-            self.selectTrack(this, event.ctrlKey);
+            // Select track element.
+            self.selectTrack(this, event.ctrlKey, event.shiftKey);
             
-            // Remove text selection if using multipl/range selection.
-            if(event.ctrlKey)
+            // Remove text selection if using multiple/range selection.
+            if(event.ctrlKey || event.shiftKey)
             {
                 window.getSelection().removeAllRanges();
             }
@@ -187,21 +187,55 @@ module.exports = new function()
         $(element).remove();
     };
     
-    this.selectTrack = function(track, add)
+    this.selectTrack = function(track, add, range)
     {
         if(!track)
             return;
             
         add = defaultArgument(add, false);
+        range = defaultArgument(range, false);
     
-        // Set selected state.
-        if(!add)
+        // Perform selection.
+        if(range)
         {
-            // Remove all selection if we don't want to add.
+            // Clear selection.
             $(track).siblings().removeClass('selected');
-        }
         
-        $(track).toggleClass('selected');
+            // Create a range between cursor and this.
+            var cursor = $('#tracklist-panel li.cursor');
+            
+            if(cursor)
+            {
+                var selected = null;
+            
+                if($(cursor).index() < $(track).index())
+                {
+                    selected = $(cursor).nextUntil(track).andSelf().add(track);
+                }
+                else
+                {
+                    selected = $(cursor).prevUntil(track).andSelf().add(track);
+                }
+                
+                $(selected).addClass('selected');
+            }
+            else
+            {
+                // No cursor, select track.
+                $(track).toggleClass('selected');
+            }
+        }
+        else if(add)
+        {
+            // Add to selection.
+            $(track).toggleClass('selected');
+        }
+        else
+        {
+            // Select only one.
+            $(track).siblings().removeClass('selected');
+            $(track).toggleClass('selected');
+        }
         
         // Set cursor position.
         $(track).siblings().removeClass('cursor');
