@@ -233,8 +233,17 @@ module.exports = new function()
         }
         else
         {
-            // Select only one.
+            // If there are multiple selections, 
+            // clear itself along with siblings.
+            if($('#tracklist-panel li.selected').length > 1)
+            {
+                $(track).removeClass('selected');
+            }
+            
+            // Clear other selections.
             $(track).siblings().removeClass('selected');
+            
+            // Toggle track selection.
             $(track).toggleClass('selected');
         }
         
