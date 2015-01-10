@@ -12,5 +12,5 @@ module.exports = function()
     audio.initialize();
     
     // Show the window.
-    nw.gui.Window.get().show();
+    nw.app.show();
 };

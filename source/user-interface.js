@@ -14,11 +14,11 @@ module.exports = new function()
         self.tracklistPanel.initialize();
         self.playbackPanel.initialize();
         
-        // Set minimum window size.
+        // Set minimum application size.
         var controlHeight = $('#control-panel').outerHeight();
         var playbackHeight = $('#playback-panel').outerHeight();
         
-        nw.gui.Window.get().setMinimumSize(500, controlHeight + playbackHeight - 1);
+        nw.app.setMinimumSize(500, controlHeight + playbackHeight - 1);
         
         // Window events.
         window.ondragover = function(event)
