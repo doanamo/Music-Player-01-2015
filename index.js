@@ -1,5 +1,6 @@
 // Export page modules.
 global.$ = $;
+global.fs = require('fs');
 global.nw = {};
 global.nw.gui = require('nw.gui');
 global.nw.app = global.nw.gui.Window.get();

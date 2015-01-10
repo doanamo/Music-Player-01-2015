@@ -20,6 +20,19 @@ module.exports = new function()
         
         nw.app.setMinimumSize(500, controlHeight + playbackHeight - 1);
         
+        // Application events.
+        nw.app.on('close', function(event)
+        {
+            // Hide the window.
+            this.hide();
+        
+            // Load user data.
+            self.tracklistPanel.save();
+        
+            // Close the window.
+            this.close(true);
+        });
+        
         // Window events.
         window.ondragover = function(event)
         {

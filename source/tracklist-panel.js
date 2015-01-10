@@ -2,6 +2,7 @@ module.exports = new function()
 {
     var self = this;
     this.menu = null;
+    this.userFile = "tracklist.json";
     
     this.initialize = function()
     {
@@ -53,6 +54,77 @@ module.exports = new function()
                 self.removeTrack(selected);
             },
         }));
+        
+        // Load track list state.
+        self.load();
+    };
+    
+    this.save = function()
+    {
+        // Create table of track list elements.
+        var table = [];
+        
+        $('#tracklist-panel .list-group').children().each(function(i)
+        {
+            var filepath = $(this).data('filepath');
+            filepath = filepath.replace(/\\/g, "/");
+            
+            table[i] = filepath;
+        });
+        
+        // Create user directory.
+        fs.mkdir(getUserDir(), function(error)
+        {
+            // Ignore if directory already exists.
+            if(error && error.code !== 'EEXIST')
+                throw error;
+        });
+        
+        // Write to file.
+        fs.writeFile(getUserDir() + self.userFile, JSON.stringify(table, undefined, 2), function(error)
+        {
+            if(error)
+                throw error;
+        });
+    };
+    
+    this.load = function()
+    {
+        // Load the file.
+        var data = null;
+        
+        try
+        {
+            data = fs.readFileSync(getUserDir() + self.userFile, 'utf8');
+        }
+        catch(error)
+        {
+            if(error.code !== 'ENOENT')
+                throw error;
+                
+            return;
+        }
+        
+        // Parse file data.
+        var table = null;
+        
+        try
+        {
+            table = JSON.parse(data);
+        }
+        catch(error)
+        {
+            // Delete corrupted file.
+            fs.unlinkSync(getUserDir() + self.userFile);
+            
+            return;
+        }
+        
+        // Add elements back to track list.
+        for(var i = 0; i < table.length; ++i)
+        {
+            self.addTrack(table[i]);
+        }
     };
     
     this.addTrack = function(filepath)
