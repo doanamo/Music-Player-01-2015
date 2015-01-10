@@ -26,7 +26,7 @@ module.exports = new function()
             // Hide the window.
             this.hide();
         
-            // Load user data.
+            // Save user data.
             self.tracklistPanel.save();
         
             // Close the window.
