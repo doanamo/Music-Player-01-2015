@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="resources/screenshot.png"/>
+    <img src="resource/screenshot.png"/>
 </p>
 
 # Music Player
