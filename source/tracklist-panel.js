@@ -81,11 +81,7 @@ module.exports = new function()
         });
         
         // Write to file.
-        fs.writeFile(getUserDir() + self.userFile, JSON.stringify(table, undefined, 2), function(error)
-        {
-            if(error)
-                throw error;
-        });
+        fs.writeFileSync(getUserDir() + self.userFile, JSON.stringify(table, undefined, 2));
     };
     
     this.load = function()
