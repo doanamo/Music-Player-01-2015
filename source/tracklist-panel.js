@@ -253,8 +253,11 @@ module.exports = new function()
         }
         
         // Set cursor position.
-        $(track).siblings().removeClass('cursor');
-        $(track).toggleClass('cursor');
+        if(!range)
+        {
+            $(track).siblings().removeClass('cursor');
+            $(track).toggleClass('cursor');
+        }
     };
     
     this.playTrack = function(element)
