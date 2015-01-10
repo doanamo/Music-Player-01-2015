@@ -76,10 +76,13 @@ module.exports = new function()
             self.playbackPanel.onMouseUp(event);
         });
         
-        $(window.document).bind('keydown', 'ctrl+a', function(event)
+        $(window.document).keydown(function(event)
         {
-            self.tracklistPanel.selectAllTracks();
-            return false;
+            if(event.ctrlKey && event.which === 'A'.charCodeAt(0))
+            {
+                self.tracklistPanel.selectAllTracks();
+                return false;
+            }
         });
         
         // Playback control.
