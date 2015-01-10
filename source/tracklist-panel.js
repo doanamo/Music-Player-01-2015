@@ -195,6 +195,12 @@ module.exports = new function()
             
         add = defaultArgument(add, false);
         range = defaultArgument(range, false);
+        
+        if(add && range)
+        {
+            add = false;
+            range = false;
+        }
     
         // Perform selection.
         if(range)
@@ -233,8 +239,7 @@ module.exports = new function()
         }
         else
         {
-            // If there are multiple selections, 
-            // clear itself along with siblings.
+            // If there are multiple selections clear itself along with siblings.
             if($('#tracklist-panel li.selected').length > 1)
             {
                 $(track).removeClass('selected');
