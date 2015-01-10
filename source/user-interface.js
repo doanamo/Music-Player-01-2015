@@ -4,8 +4,6 @@ module.exports = new function()
     
     this.initialize = function()
     {
-        window.nwDispatcher.requireNwGui();
-    
         // Get interface element instances.
         self.volumePanel = require("./volume-panel.js");
         self.tracklistPanel = require("./tracklist-panel.js");

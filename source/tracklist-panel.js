@@ -161,8 +161,7 @@ module.exports = new function()
     
     this.getCurrent = function()
     {
-        var current = $('#tracklist-panel li.active');
-        return current;
+        return $('#tracklist-panel li.active');
     };
     
     this.getNext = function()
