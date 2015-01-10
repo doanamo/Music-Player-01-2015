@@ -260,10 +260,19 @@ module.exports = new function()
         }
     };
     
+    this.clearActiveTrack = function()
+    {
+        $('#tracklist-panel li').removeClass('active');
+    };
+    
     this.playTrack = function(element)
     {
         if(!element)
+        {
+            self.clearActiveTrack();
+            audio.stop();
             return;
+        }
             
         // Load track list element.
         audio.load($(element).data('filepath'));
