@@ -71,7 +71,12 @@ module.exports = new function()
             event.preventDefault();
             
             // Select all tracks on the current playlist.
-            self.getCurrentPlaylist().data('tracklist').selectAllTracks();
+            var playlist = self.getCurrentPlaylist();
+            
+            if(playlist.length !== 0)
+            {
+                playlist.data('tracklist').selectAllTracks();
+            }
         }
     };
     
