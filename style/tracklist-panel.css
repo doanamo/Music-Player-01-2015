@@ -32,6 +32,14 @@
     border-bottom-left-radius: 0px;
 }
 
+#tracklist-panel li div
+{
+    -webkit-user-select: auto;
+    
+    display: inline-block;
+    width: auto;
+}
+
 #tracklist-panel li.cursor
 {
     outline: thin dotted;
@@ -66,12 +74,4 @@
 #tracklist-panel li.active.selected
 {
     background-color: #296292;
-}
-
-#tracklist-panel li div
-{
-    -webkit-user-select: auto;
-    
-    display: inline-block;
-    width: auto;
 }
