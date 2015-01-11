@@ -1,3 +1,5 @@
+var Tracklist = require('./tracklist.js');
+
 module.exports = new function()
 {
     var self = this;
@@ -66,6 +68,18 @@ module.exports = new function()
         element.addClass('list-group-item');
         element.append($('<div>').text(name));
         
+        // Create a tracklist object.
+        var tracklist = new Tracklist();
+        tracklist.initialize();
+        
+        for(var i = 1; i <= 20; ++i)
+        {
+            tracklist.addTrack("Test " + i);
+        }
+        
+        element.data('tracklist', tracklist);
+        
+        // Set element handlers.
         element.click(function(event)
         {
             self.switchList(this);
@@ -91,6 +105,7 @@ module.exports = new function()
         
         // Prevent cyclic reference.
         element = null;
+        tracklist = null;
     };
     
     this.onKeyDown = function(event)
@@ -108,6 +123,10 @@ module.exports = new function()
     
     this.deleteList = function(element)
     {
+        // Call tracklist cleanup method.
+        $(element).data('tracklist').cleanup();
+    
+        // Remove element.
         $(element).remove();
     };
     
