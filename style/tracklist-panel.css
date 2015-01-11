@@ -1,9 +1,31 @@
 #tracklist-panel
 {
+    position: relative;
+
     padding: 0px 0px;
     height: 100%;
 
     overflow-y: auto;
+}
+
+#tracklist-panel ul
+{
+    position: absolute;
+    width: 100%;
+    
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s linear;
+    transition-delay: 0.05s;
+}
+
+#tracklist-panel ul.hidden
+{
+    display: block !important;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.1s, opacity 0.1s linear;
 }
 
 #tracklist-panel li

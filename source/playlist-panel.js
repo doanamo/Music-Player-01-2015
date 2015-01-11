@@ -72,7 +72,7 @@ module.exports = new function()
         var tracklist = new Tracklist();
         tracklist.initialize();
         
-        for(var i = 1; i <= 20; ++i)
+        for(var i = 1; i <= Math.random() * 20 + 1; ++i)
         {
             tracklist.addTrack("Test " + i);
         }
@@ -144,6 +144,14 @@ module.exports = new function()
     
     this.switchList = function(element)
     {
+        // Hide currently visible playlist.
+        $('#tracklist-panel > ul:visible').addClass('hidden');
+        
+        // Show the playlist we want.
+        var tracklist = $(element).data('tracklist');
+        $(tracklist.element).removeClass('hidden');
+    
+        // Change playlist element style.
         $(element).siblings().removeClass('active');
         $(element).addClass('active');
     };
