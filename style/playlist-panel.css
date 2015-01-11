@@ -62,3 +62,14 @@
 {
     background-color: #296292;
 }
+
+#playlist-panel li.selected
+{
+    //background-color: #f5f5f5;
+}
+
+#playlist-panel li.active.selected
+{
+    //background-color: #296292;
+}
+

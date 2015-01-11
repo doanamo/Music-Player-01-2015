@@ -100,6 +100,12 @@ module.exports = new function()
         
         element.on('contextmenu', function(event)
         {
+            // Select track if not selected.
+            if(!$(this).hasClass('selected'))
+            {
+                self.selectPlaylist(this);
+            }
+        
             // Open context menu.
             self.listMenu.popup(event.pageX, event.pageY);
             
@@ -134,6 +140,12 @@ module.exports = new function()
         // Change playlist element style.
         $(element).siblings().removeClass('active');
         $(element).addClass('active');
+    };
+    
+    this.selectPlaylist = function(element)
+    {
+        $(element).siblings().removeClass('selected');
+        $(element).addClass('selected');
     };
     
     this.getCurrentPlaylist = function()
