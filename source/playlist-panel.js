@@ -46,7 +46,8 @@ module.exports = new function()
             label: 'Create',
             click: function()
             {
-                self.createPlaylist("New Playlist");
+                var selected = $('#playlist-panel .selected');
+                self.createPlaylist("New Playlist", selected);
             }
         }));
         
@@ -74,7 +75,7 @@ module.exports = new function()
         }
     };
     
-    this.createPlaylist = function(name)
+    this.createPlaylist = function(name, after)
     {
         // Create list element.
         var element = $('<li>');
@@ -114,7 +115,16 @@ module.exports = new function()
         });
         
         // Add element to the list.
-        $('#playlist-panel .list-group').append(element);
+        if(after)
+        {
+            // Place after specified element.
+            $(element).insertAfter(after);
+        }
+        else
+        {
+            // Place at the end.
+            $('#playlist-panel .list-group').append(element);
+        }
         
         // Prevent cyclic reference.
         element = null;
