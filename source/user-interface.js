@@ -29,7 +29,7 @@ module.exports = new function()
             this.hide();
         
             // Save user data.
-            // TODO!
+            ui.playlistPanel.save();
         
             // Close the window.
             this.close(true);

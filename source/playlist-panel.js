@@ -1,4 +1,5 @@
 var Tracklist = require('./tracklist.js');
+var userFile = "playlists.json";
 
 module.exports = new function()
 {
@@ -60,6 +61,48 @@ module.exports = new function()
                 self.deletePlaylist(selected);
             },
         }));
+    };
+    
+    this.save = function()
+    {
+        // Create table of playlist to be stored.
+        var table = [];
+        
+        $('#playlist-panel .list-group').children().each(function(i)
+        {
+            var playlist = {};
+            
+            // Write playlist name,
+            playlist.name = $(this).children().text();
+            
+            // Write playlist tracks.
+            playlist.tracks = [];
+            
+            var tracklist = $(this).data('tracklist').element;
+            
+            $(tracklist).children().each(function(i)
+            {
+                playlist.tracks[i] = $(this).data('filepath');
+            });
+            
+            // Add playlist to table.
+            table[i] = playlist;
+        });
+        
+        // Create user directory.
+        fs.mkdir(getUserDir(), function(error)
+        {
+            // Ignore if directory already exists.
+            if(error && error.code !== 'EEXIST')
+                throw error;
+        });
+        
+        // Write to file.
+        fs.writeFileSync(getUserDir() + userFile, JSON.stringify(table, undefined, 4));
+    };
+    
+    this.load = function()
+    {
     };
     
     this.onKeyDown = function(event)

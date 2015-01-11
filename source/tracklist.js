@@ -86,6 +86,9 @@ Tracklist.prototype.cleanup = function()
 Tracklist.prototype.addTrack = function(filepath)
 {
     var self = this;
+    
+    // Convert path separators.
+    filepath = filepath.replace(/\\/g, "/");
 
     // Get file name without extension from full path.
     var name = filepath.replace(/^.*[\\\/]/, "").replace(/\.[^/.]+$/, "");
