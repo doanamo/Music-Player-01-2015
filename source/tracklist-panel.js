@@ -59,6 +59,15 @@ module.exports = new function()
         self.load();
     };
     
+    this.onKeyDown = function(event)
+    {
+        if(event.ctrlKey && event.which === 'A'.charCodeAt(0))
+        {
+            event.preventDefault();
+            self.selectAllTracks();
+        }
+    };
+    
     this.save = function()
     {
         // Create table of track list elements.

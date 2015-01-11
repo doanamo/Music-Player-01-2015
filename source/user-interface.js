@@ -78,11 +78,7 @@ module.exports = new function()
         
         $(window.document).keydown(function(event)
         {
-            if(event.ctrlKey && event.which === 'A'.charCodeAt(0))
-            {
-                self.tracklistPanel.selectAllTracks();
-                return false;
-            }
+            self.tracklistPanel.onKeyDown(event);
         });
         
         // Playback control.
