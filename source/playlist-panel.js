@@ -144,11 +144,9 @@ module.exports = new function()
     
     this.switchList = function(element)
     {
-        // Hide currently visible playlist.
-        $('#tracklist-panel > ul:visible').addClass('hidden');
-        
         // Show the playlist we want.
         var tracklist = $(element).data('tracklist');
+        $(tracklist.element).siblings().addClass('hidden');
         $(tracklist.element).removeClass('hidden');
     
         // Change playlist element style.
