@@ -12,6 +12,9 @@
 {
     position: absolute;
     width: 100%;
+    height: auto;
+    min-height: 100%;
+    margin: 0px 0px;
     
     visibility: visible;
     opacity: 1;
@@ -23,9 +26,15 @@
 {
     display: block !important;
 
+    height: 0px;
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s 0.1s, opacity 0.1s linear;
+    
+    transition: height 0.0s linear 0.1s, visibility 0s 0.1s, opacity 0.1s linear;
+}
+
+#tracklist-panel ul.hidden
+{
 }
 
 #tracklist-panel li
@@ -52,6 +61,8 @@
 {
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
+    
+    //margin-bottom: 100px;
 }
 
 #tracklist-panel li div
