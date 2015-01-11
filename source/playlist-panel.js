@@ -11,7 +11,7 @@ module.exports = new function()
     {
         for(var i = 0; i < 4; ++i)
         {
-            self.createList("Playlist " + i);
+            self.createPlaylist("Playlist " + i);
         }
         
         // Open context menu on right click.
@@ -28,7 +28,7 @@ module.exports = new function()
             label: 'Create',
             click: function()
             {
-                self.createList("New Playlist");
+                self.createPlaylist("New Playlist");
             }
         }));
         
@@ -46,7 +46,7 @@ module.exports = new function()
             label: 'Create',
             click: function()
             {
-                self.createList("New Playlist");
+                self.createPlaylist("New Playlist");
             }
         }));
         
@@ -56,12 +56,25 @@ module.exports = new function()
             click: function()
             {
                 var selected = $('#playlist-panel .selected');
-                self.deleteList(selected);
+                self.deletePlaylist(selected);
             },
         }));
     };
     
-    this.createList = function(name)
+    this.onKeyDown = function(event)
+    {
+        // Select all tracks on playlist.
+        if(event.ctrlKey && event.which === 'A'.charCodeAt(0))
+        {
+            // Stop from selecting all text on the page.
+            event.preventDefault();
+            
+            // Select all tracks on the current playlist.
+            self.getCurrentPlaylist().data('tracklist').selectAllTracks();
+        }
+    };
+    
+    this.createPlaylist = function(name)
     {
         // Create list element.
         var element = $('<li>');
@@ -82,7 +95,7 @@ module.exports = new function()
         // Set element handlers.
         element.click(function(event)
         {
-            self.switchList(this);
+            self.switchPlaylist(this);
         });
         
         element.on('contextmenu', function(event)
@@ -102,20 +115,7 @@ module.exports = new function()
         tracklist = null;
     };
     
-    this.onKeyDown = function(event)
-    {
-        // Select all tracks on playlist.
-        if(event.ctrlKey && event.which === 'A'.charCodeAt(0))
-        {
-            // Stop from selecting all text on the page.
-            event.preventDefault();
-            
-            // Select all tracks on the current playlist.
-            // TODO!
-        }
-    };
-    
-    this.deleteList = function(element)
+    this.deletePlaylist = function(element)
     {
         // Call tracklist cleanup method.
         $(element).data('tracklist').cleanup();
@@ -124,7 +124,7 @@ module.exports = new function()
         $(element).remove();
     };
     
-    this.switchList = function(element)
+    this.switchPlaylist = function(element)
     {
         // Show the playlist we want.
         var tracklist = $(element).data('tracklist');
@@ -134,5 +134,10 @@ module.exports = new function()
         // Change playlist element style.
         $(element).siblings().removeClass('active');
         $(element).addClass('active');
+    };
+    
+    this.getCurrentPlaylist = function()
+    {
+        return $('#playlist-panel li.active');
     };
 };
