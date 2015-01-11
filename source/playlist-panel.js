@@ -87,12 +87,6 @@ module.exports = new function()
         
         element.on('contextmenu', function(event)
         {
-            // Select list if not selected.
-            if(!$(this).hasClass('selected'))
-            {
-                self.selectList(this);
-            }
-            
             // Open context menu.
             self.listMenu.popup(event.pageX, event.pageY);
             
@@ -128,18 +122,6 @@ module.exports = new function()
     
         // Remove element.
         $(element).remove();
-    };
-    
-    this.selectList = function(element)
-    {
-        if(!element)
-            return;
-            
-        // Clear other selections.
-        $(element).siblings().removeClass('selected');
-        
-        // Toggle element selection.
-        $(element).toggleClass('selected');
     };
     
     this.switchList = function(element)
