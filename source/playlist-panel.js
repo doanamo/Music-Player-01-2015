@@ -211,6 +211,9 @@ module.exports = new function()
             $('#playlist-panel .list-group').append(element);
         }
         
+        // Switch to newly created playlist.
+        this.switchPlaylist(element);
+        
         // Set return value.
         var output = element;
         
