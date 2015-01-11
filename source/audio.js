@@ -56,7 +56,7 @@ module.exports = new function()
         
         self.sound.bind("ended", function()
         {
-            ui.tracklistPanel.onEnded();
+            player.onTrackEnded();
         });
     };
     

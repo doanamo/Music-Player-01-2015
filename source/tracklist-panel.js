@@ -291,25 +291,25 @@ module.exports = new function()
         $(element).addClass('active');
     };
     
-    this.playNext = function()
+    this.playNextTrack = function()
     {
-        self.playTrack(self.getNext());
+        self.playTrack(self.getNextTrack());
     };
     
-    this.playPrevious = function()
+    this.playPreviousTrack = function()
     {
-        self.playTrack(self.getPrevious());
+        self.playTrack(self.getPreviousTrack());
     };
     
-    this.getCurrent = function()
+    this.getCurrentTrack = function()
     {
         return $('#tracklist-panel li.active');
     };
     
-    this.getNext = function()
+    this.getNextTrack = function()
     {
         // Get current track.
-        var current = self.getCurrent();
+        var current = self.getCurrentTrack();
         
         if(!current)
             return null;
@@ -326,10 +326,10 @@ module.exports = new function()
         return next;
     };
     
-    this.getPrevious = function()
+    this.getPreviousTrack = function()
     {
         // Get current track.
-        var current = self.getCurrent();
+        var current = self.getCurrentTrack();
         
         if(!current)
             return null;
@@ -344,11 +344,5 @@ module.exports = new function()
         }
         
         return previous;
-    };
-    
-    this.onEnded = function()
-    {
-        // Play next track.
-        self.playTrack(self.getNext());
     };
 };
