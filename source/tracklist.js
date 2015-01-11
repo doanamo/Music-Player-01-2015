@@ -265,7 +265,7 @@ Tracklist.prototype.getCurrentTrack = function()
 Tracklist.prototype.getNextTrack = function()
 {
     // Get current track.
-    var current = self.getCurrentTrack();
+    var current = this.getCurrentTrack();
     
     if(!current)
         return null;
@@ -284,7 +284,7 @@ Tracklist.prototype.getNextTrack = function()
 Tracklist.prototype.getPreviousTrack = function()
 {
     // Get current track.
-    var current = self.getCurrentTrack();
+    var current = this.getCurrentTrack();
     
     if(!current)
         return null;

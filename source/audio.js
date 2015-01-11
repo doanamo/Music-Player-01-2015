@@ -18,6 +18,8 @@ module.exports = new function()
         self.stop();
         self.sound = null;
         
+        player.onTrackDiscard();
+        
         // Load the sound file.
         self.sound = new buzz.sound(filepath);
         
