@@ -10,11 +10,6 @@ module.exports = new function()
     
     this.initialize = function()
     {
-        for(var i = 0; i < 4; ++i)
-        {
-            self.createPlaylist("Playlist " + i);
-        }
-        
         // Open context menu on right click.
         $('#playlist-panel').on('contextmenu', function(event)
         {
@@ -61,6 +56,9 @@ module.exports = new function()
                 self.deletePlaylist(selected);
             },
         }));
+        
+        // Load playlist user file.
+        self.load();
     };
     
     this.save = function()
@@ -103,6 +101,50 @@ module.exports = new function()
     
     this.load = function()
     {
+        // Load the file.
+        var data = null;
+        
+        try
+        {
+            data = fs.readFileSync(getUserDir() + userFile, 'utf8');
+        }
+        catch(error)
+        {
+            if(error.code !== 'ENOENT')
+                throw error;
+                
+            return;
+        }
+        
+        // Parse file.
+        var table = null;
+        
+        try
+        {
+            table = JSON.parse(data);
+        }
+        catch(error)
+        {
+            // Delete corrupted file.
+            fs.unlinkSync(getUserDir() + self.userFile);
+            
+            return;
+        }
+        
+        // Deserialize data.
+        for(var p = 0; p < table.length; ++p)
+        {
+            // Create playlist.
+            var playlist = this.createPlaylist(table[p].name);
+            
+            // Add tracks to the playlist.
+            var tracklist = playlist.data('tracklist');
+            
+            for(var t = 0; t < table[p].tracks.length; ++t)
+            {
+                tracklist.addTrack(table[p].tracks[t]);
+            }
+        }
     };
     
     this.onKeyDown = function(event)
@@ -133,12 +175,7 @@ module.exports = new function()
         // Create a tracklist object.
         var tracklist = new Tracklist();
         tracklist.initialize();
-        
-        for(var i = 1; i <= Math.random() * 20 + 1; ++i)
-        {
-            tracklist.addTrack("Test " + i);
-        }
-        
+
         element.data('tracklist', tracklist);
         
         // Set element handlers.
@@ -174,9 +211,14 @@ module.exports = new function()
             $('#playlist-panel .list-group').append(element);
         }
         
+        // Set return value.
+        var output = element;
+        
         // Prevent cyclic reference.
         element = null;
         tracklist = null;
+        
+        return output;
     };
     
     this.deletePlaylist = function(element)
