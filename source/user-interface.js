@@ -5,11 +5,13 @@ module.exports = new function()
     this.initialize = function()
     {
         // Get interface element instances.
+        self.controlPanel = require("./control-panel.js");
         self.volumePanel = require("./volume-panel.js");
         self.tracklistPanel = require("./tracklist-panel.js");
         self.playbackPanel = require("./playback-panel.js");
         
         // Initialize interface elements.
+        self.controlPanel.initialize();
         self.volumePanel.initialize();
         self.tracklistPanel.initialize();
         self.playbackPanel.initialize();
@@ -79,47 +81,6 @@ module.exports = new function()
         $(window.document).keydown(function(event)
         {
             self.tracklistPanel.onKeyDown(event);
-        });
-        
-        // Playback control.
-        $('#playback-stop').click(function()
-        {
-            audio.stop();
-        });
-        
-        $('#playback-pause').click(function()
-        {
-            audio.pause();
-        });
-        
-        $('#playback-play').click(function()
-        {
-            audio.play();
-        });
-        
-        $('#playback-previous').click(function()
-        {
-            ui.tracklistPanel.playPrevious();
-        });
-        
-        $('#playback-next').click(function()
-        {
-            ui.tracklistPanel.playNext();
-        });
-
-        // Application control.
-        $('#application-volume').click(function()
-        {
-            if(!$(this).hasClass('active'))
-            {
-                $(this).addClass('active');
-                self.volumePanel.show();
-            }
-            else
-            {
-                $(this).removeClass('active');
-                self.volumePanel.hide();
-            }
         });
     };
 };
