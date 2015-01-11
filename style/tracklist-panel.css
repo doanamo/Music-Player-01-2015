@@ -40,7 +40,17 @@
     width: auto;
 }
 
-#tracklist-panel li.cursor
+#tracklist-panel:focus
+{
+    outline: none;
+}
+
+#tracklist-panel:focus *
+{
+    outline: none;
+}
+
+#tracklist-panel:focus .cursor
 {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;

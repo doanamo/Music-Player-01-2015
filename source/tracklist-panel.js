@@ -18,6 +18,17 @@ module.exports = new function()
             }
         });
         
+        // Make sure cursor is set when focused.
+        $('#tracklist-panel').focus(function()
+        {
+            var cursor = $('#tracklist-panel li.cursor');
+            
+            if(cursor.length === 0)
+            {
+                $('#tracklist-panel li:first-child').addClass('cursor');
+            }
+        });
+        
         // Create track context menu.
         self.menu = new nw.gui.Menu();
         
@@ -61,6 +72,7 @@ module.exports = new function()
     
     this.onKeyDown = function(event)
     {
+        // Select all tracks.
         if(event.ctrlKey && event.which === 'A'.charCodeAt(0))
         {
             event.preventDefault();
@@ -265,7 +277,7 @@ module.exports = new function()
         if(!range)
         {
             $(element).siblings().removeClass('cursor');
-            $(element).toggleClass('cursor');
+            $(element).addClass('cursor');
         }
     };
     
