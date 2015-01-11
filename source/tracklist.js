@@ -28,7 +28,7 @@ Tracklist.prototype.initialize = function()
     // Make sure cursor is set when focused.
     $('#tracklist-panel').focus(function()
     {
-        var cursor = $(this.element).find('li.cursor');
+        var cursor = $(self.element).find('li.cursor');
         
         if(cursor.length === 0)
         {
