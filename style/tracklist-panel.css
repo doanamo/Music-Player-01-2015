@@ -30,6 +30,8 @@
     opacity: 0;
     
     transition: height 0.0s linear 0.1s, visibility 0s 0.1s, opacity 0.1s linear;
+    
+    overflow-y: hidden;
 }
 
 #tracklist-panel ul.hidden
