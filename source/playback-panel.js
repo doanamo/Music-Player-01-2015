@@ -10,7 +10,7 @@ module.exports = new function()
             var file = event.originalEvent.dataTransfer.files[0];
             
             // Clear active track.
-            ui.tracklistPanel.clearActiveTrack();
+            player.clearActiveTrack();
         
             // Load dropped sound file.
             audio.load(file.path);

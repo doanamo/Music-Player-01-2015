@@ -6,9 +6,21 @@ module.exports = new function()
     {
     };
     
+    this.playPreviousTrack = function()
+    {
+    };
+    
+    this.playNextTrack = function()
+    {
+    };
+    
+    this.clearActiveTrack = function()
+    {
+    };
+    
     this.onTrackEnded = function()
     {
-        // Play next track from current playlist.
-        ui.tracklistPanel.playNextTrack();
+        // Play next track.
+       self.playNextTrack();
     };
 };

@@ -93,6 +93,19 @@ module.exports = new function()
         element = null;
     };
     
+    this.onKeyDown = function(event)
+    {
+        // Select all tracks on playlist.
+        if(event.ctrlKey && event.which === 'A'.charCodeAt(0))
+        {
+            // Stop from selecting all text on the page.
+            event.preventDefault();
+            
+            // Select all tracks on the current playlist.
+            // TODO!
+        }
+    };
+    
     this.deleteList = function(element)
     {
         $(element).remove();

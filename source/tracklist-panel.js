@@ -1,6 +1,7 @@
-module.exports = new function()
+module.exports.Playlist = function()
 {
     var self = this;
+    
     this.menu = null;
     this.userFile = "tracklist.json";
     
@@ -68,16 +69,6 @@ module.exports = new function()
         
         // Load track list state.
         self.load();
-    };
-    
-    this.onKeyDown = function(event)
-    {
-        // Select all tracks.
-        if(event.ctrlKey && event.which === 'A'.charCodeAt(0))
-        {
-            event.preventDefault();
-            self.selectAllTracks();
-        }
     };
     
     this.save = function()

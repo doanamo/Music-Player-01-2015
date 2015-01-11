@@ -22,12 +22,12 @@ module.exports = new function()
         
         $('#playback-previous').click(function()
         {
-            ui.tracklistPanel.playPreviousTrack();
+            player.playPreviousTrack();
         });
         
         $('#playback-next').click(function()
         {
-            ui.tracklistPanel.playNextTrack();
+            player.playNextTrack();
         });
         
         // Application control.

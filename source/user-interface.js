@@ -8,14 +8,12 @@ module.exports = new function()
         self.controlPanel = require("./control-panel.js");
         self.volumePanel = require("./volume-panel.js");
         self.playlistPanel = require("./playlist-panel.js");
-        self.tracklistPanel = require("./tracklist-panel.js");
         self.playbackPanel = require("./playback-panel.js");
         
         // Initialize interface elements.
         self.controlPanel.initialize();
         self.volumePanel.initialize();
         self.playlistPanel.initialize();
-        self.tracklistPanel.initialize();
         self.playbackPanel.initialize();
         
         // Set minimum application size.
@@ -31,7 +29,7 @@ module.exports = new function()
             this.hide();
         
             // Save user data.
-            self.tracklistPanel.save();
+            // TODO!
         
             // Close the window.
             this.close(true);
@@ -82,7 +80,7 @@ module.exports = new function()
         
         $(window.document).keydown(function(event)
         {
-            self.tracklistPanel.onKeyDown(event);
+            self.playlistPanel.onKeyDown(event);
         });
     };
 };
