@@ -197,9 +197,9 @@ module.exports = new function()
         $('#tracklist-panel li').addClass('selected');
     };
     
-    this.selectTrack = function(track, add, range)
+    this.selectTrack = function(element, add, range)
     {
-        if(!track)
+        if(!element)
             return;
             
         add = defaultArgument(add, false);
@@ -215,7 +215,7 @@ module.exports = new function()
         if(range)
         {
             // Clear selection.
-            $(track).siblings().removeClass('selected');
+            $(element).siblings().removeClass('selected');
         
             // Create a range between cursor and this.
             var cursor = $('#tracklist-panel li.cursor');
@@ -224,13 +224,13 @@ module.exports = new function()
             {
                 var selected = null;
             
-                if($(cursor).index() < $(track).index())
+                if($(cursor).index() < $(element).index())
                 {
-                    selected = $(cursor).nextUntil(track).andSelf().add(track);
+                    selected = $(cursor).nextUntil(element).andSelf().add(element);
                 }
                 else
                 {
-                    selected = $(cursor).prevUntil(track).andSelf().add(track);
+                    selected = $(cursor).prevUntil(element).andSelf().add(element);
                 }
                 
                 $(selected).addClass('selected');
@@ -238,34 +238,34 @@ module.exports = new function()
             else
             {
                 // No cursor, select track.
-                $(track).toggleClass('selected');
+                $(element).toggleClass('selected');
             }
         }
         else if(add)
         {
             // Add to selection.
-            $(track).toggleClass('selected');
+            $(element).toggleClass('selected');
         }
         else
         {
             // If there are multiple selections clear itself along with siblings.
             if($('#tracklist-panel li.selected').length > 1)
             {
-                $(track).removeClass('selected');
+                $(element).removeClass('selected');
             }
             
             // Clear other selections.
-            $(track).siblings().removeClass('selected');
+            $(element).siblings().removeClass('selected');
             
             // Toggle track selection.
-            $(track).toggleClass('selected');
+            $(element).toggleClass('selected');
         }
         
         // Set cursor position.
         if(!range)
         {
-            $(track).siblings().removeClass('cursor');
-            $(track).toggleClass('cursor');
+            $(element).siblings().removeClass('cursor');
+            $(element).toggleClass('cursor');
         }
     };
     
