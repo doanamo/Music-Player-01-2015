@@ -8,7 +8,7 @@ module.exports = new function()
     
     this.playPreviousTrack = function()
     {
-        var playlist = ui.playlistPanel.getCurrentPlaylist();
+        var playlist = ui.playlistPanel.getActivePlaylist();
         var tracklist = $(playlist).data('tracklist');
         
         tracklist.playPreviousTrack();
@@ -16,7 +16,7 @@ module.exports = new function()
     
     this.playNextTrack = function()
     {
-        var playlist = ui.playlistPanel.getCurrentPlaylist();
+        var playlist = ui.playlistPanel.getActivePlaylist();
         var tracklist = $(playlist).data('tracklist');
         
         tracklist.playNextTrack();

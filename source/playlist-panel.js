@@ -253,6 +253,32 @@ module.exports = new function()
     
     this.getCurrentPlaylist = function()
     {
+        // Get playlist that's currently viewed.
         return $('#playlist-panel li.active');
+    };
+    
+    this.getActivePlaylist = function()
+    {
+        // Get playlist that has a track currently played.
+        var playlist = null;
+        
+        $('#playlist-panel li').each(function()
+        {
+            var tracklist = $(this).data('tracklist').element;
+            
+            if($(tracklist).find('.active').length !== 0)
+            {
+                playlist = $(this);
+                return false;
+            }
+        });
+        
+        // Return current playlist if none is active.
+        if(!playlist)
+        {
+            return this.getCurrentPlaylist();
+        }
+        
+        return playlist;
     };
 };
