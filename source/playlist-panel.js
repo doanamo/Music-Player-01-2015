@@ -309,6 +309,9 @@ module.exports = new function()
         // Change playlist element style.
         $(element).siblings().removeClass('active');
         $(element).addClass('active');
+        
+        // Put focus on the tracklist panel.
+        $('#tracklist-panel').focus();
     };
     
     this.selectPlaylist = function(element)
