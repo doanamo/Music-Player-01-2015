@@ -34,7 +34,7 @@
 #playlist-panel li:last-child
 {
     border-bottom-right-radius: 0px;
-    bordPPlaylistlaylister-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 #playlist-panel li div
