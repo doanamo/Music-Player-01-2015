@@ -150,17 +150,20 @@ module.exports = new function()
     this.onKeyDown = function(event)
     {
         // Select all tracks on playlist.
-        if(event.ctrlKey && event.which === 'A'.charCodeAt(0))
+        if($('#tracklist-panel').is(':focus'))
         {
-            // Stop from selecting all text on the page.
-            event.preventDefault();
-            
-            // Select all tracks on the current playlist.
-            var playlist = self.getCurrentPlaylist();
-            
-            if(playlist.length !== 0)
+            if(event.ctrlKey && event.which === 'A'.charCodeAt(0))
             {
-                playlist.data('tracklist').selectAllTracks();
+                // Stop from selecting all text on the page.
+                event.preventDefault();
+                
+                // Select all tracks on the current playlist.
+                var playlist = self.getCurrentPlaylist();
+                
+                if(playlist.length !== 0)
+                {
+                    playlist.data('tracklist').selectAllTracks();
+                }
             }
         }
     };
