@@ -5,7 +5,7 @@
 # Music Player
 Unnamed music player running in Node-Webkit.
 
-This is my first JavaScript project after finishing Codeacademy course.
+This is my first JavaScript project after finishing Codeacademy course.<br/>
 Don't expect quality code in here. This is work in progress!
 
 # How To Run
