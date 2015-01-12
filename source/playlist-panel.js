@@ -170,7 +170,63 @@ module.exports = new function()
         // Create list element.
         var element = $('<li>');
         element.addClass('list-group-item');
-        element.append($('<div>').text(name));
+        
+        // Create text label edit.
+        var labelContainer = $('<div>');
+        element.append(labelContainer);
+        
+        var labelText = $('<label>');
+        labelText.text(name)
+        labelContainer.append(labelText);
+        
+        var labelInput = $('<input>');
+        labelInput.addClass('form-control');
+        labelInput.val(name);
+        labelInput.hide();
+        labelContainer.append(labelInput);
+        
+        labelText.click(function()
+        {
+            if(element.hasClass('active'))
+            {
+                // Hide label.
+                labelText.hide();
+            
+                // Mirror text to input.
+                labelInput.val($(this).text());
+            
+                // Show and focus input.
+                labelInput.show();
+                labelInput.focus();
+            }
+        });
+        
+        labelInput.blur(function()
+        {
+            // Submit change and hide.
+            $(this).submit();
+            $(this).hide();
+            
+            // Show label.
+            labelText.show();
+        });
+        
+        labelInput.keypress(function(event)
+        {
+            // Submit when enter is pressed.
+            if(event.which === 13)
+            {
+                labelInput.blur();
+                return false;
+            }
+        });
+        
+        labelInput.submit(function()
+        {
+            var text = $(this).val();
+            
+            labelText.text(text);
+        });
         
         // Create a tracklist object.
         var tracklist = new Tracklist();
@@ -178,10 +234,21 @@ module.exports = new function()
 
         element.data('tracklist', tracklist);
         
+        // Prevent cyclic reference.
+        tracklist = null;
+        
         // Set element handlers.
         element.click(function(event)
         {
-            self.switchPlaylist(this);
+            if(!$(this).hasClass('active'))
+            {
+                // Remove text selection.
+                window.getSelection().removeAllRanges();
+            
+                // Switch playlists.
+                self.switchPlaylist(this);
+            }
+            
         });
         
         element.on('contextmenu', function(event)
@@ -216,10 +283,6 @@ module.exports = new function()
         
         // Set return value.
         var output = element;
-        
-        // Prevent cyclic reference.
-        element = null;
-        tracklist = null;
         
         return output;
     };

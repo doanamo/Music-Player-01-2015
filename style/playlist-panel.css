@@ -20,8 +20,8 @@
     
     transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
     
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 #playlist-panel li:first-child
@@ -39,10 +39,31 @@
 
 #playlist-panel li div
 {
-    -webkit-user-select: auto;
+    position: relative;
     
-    display: inline-block;
-    width: auto;
+    height: 34px;
+}
+
+#playlist-panel li label
+{
+    -webkit-user-select: auto;
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    padding: 6px 12px;
+    
+    width: 100%;
+}
+
+#playlist-panel li input
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    
+    width: 100%;
 }
 
 #playlist-panel li:hover
