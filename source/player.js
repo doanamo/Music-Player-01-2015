@@ -6,6 +6,21 @@ module.exports = new function()
     {
     };
     
+    this.playTrack = function()
+    {
+        var playlist = ui.playlistPanel.getActivePlaylist();
+        var tracklist = $(playlist).data('tracklist');
+        
+        if(tracklist.getActiveTrack().length === 0)
+        {
+            tracklist.playNextTrack();
+        }
+        else
+        {
+            audio.play();
+        }
+    };
+    
     this.playPreviousTrack = function()
     {
         var playlist = ui.playlistPanel.getActivePlaylist();

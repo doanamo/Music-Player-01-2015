@@ -17,7 +17,7 @@ module.exports = new function()
         
         $('#playback-play').click(function()
         {
-            audio.play();
+            player.playTrack();
         });
         
         $('#playback-previous').click(function()
