@@ -201,6 +201,9 @@ module.exports = new function()
                 // Show and focus input.
                 labelInput.show();
                 labelInput.focus();
+                
+                // Select all input.
+                labelInput.select();
             }
         });
         
