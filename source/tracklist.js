@@ -257,7 +257,7 @@ Tracklist.prototype.playPreviousTrack = function()
     this.playTrack(this.getPreviousTrack());
 };
 
-Tracklist.prototype.getCurrentTrack = function()
+Tracklist.prototype.getActiveTrack = function()
 {
     return $(this.element).find('li.active');
 };
@@ -265,7 +265,7 @@ Tracklist.prototype.getCurrentTrack = function()
 Tracklist.prototype.getNextTrack = function()
 {
     // Get current track.
-    var current = this.getCurrentTrack();
+    var current = this.getActiveTrack();
     
     if(!current)
         return null;
@@ -284,7 +284,7 @@ Tracklist.prototype.getNextTrack = function()
 Tracklist.prototype.getPreviousTrack = function()
 {
     // Get current track.
-    var current = this.getCurrentTrack();
+    var current = this.getActiveTrack();
     
     if(!current)
         return null;
