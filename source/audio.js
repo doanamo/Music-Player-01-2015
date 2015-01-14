@@ -98,6 +98,11 @@ module.exports = new function()
         ui.volumePanel.onVolumeChange(percentage);
     };
     
+    this.getVolume = function()
+    {
+        return self.volume;
+    };
+    
     this.setTime = function(seconds)
     {
         if(self.sound)

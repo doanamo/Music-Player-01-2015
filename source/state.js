@@ -2,21 +2,77 @@ module.exports = new function()
 {
     var self = this;
     
+    var configFile = "config.json";
     var playlistFile = "playlists.json";
     
     this.initialize = function()
     {
+        // Create user directory.
+        fs.mkdir(getUserDir(), function(error)
+        {
+            // Ignore if directory already exists.
+            if(error && error.code !== 'EEXIST')
+                throw error;
+        });
+    
+        // Load state.
         self.load();
     };
     
     this.save = function()
     {
+        self.saveConfig();
         self.savePlaylist();
     };
     
     this.load = function()
     {
+        self.loadConfig();
         self.loadPlaylist();
+    };
+    
+    this.saveConfig = function()
+    {
+        // Create table.
+        var table = {};
+        table.volume = audio.getVolume();
+        
+        // Write to file.
+        fs.writeFileSync(getUserDir() + configFile, JSON.stringify(table, undefined, 4));
+    };
+    
+    this.loadConfig = function()
+    {
+        // Load the file.
+        var data = null;
+        
+        try
+        {
+            data = fs.readFileSync(getUserDir() + configFile, 'utf8');
+        }
+        catch(error)
+        {
+            if(error.code !== 'ENOENT')
+                throw error;
+                
+            return;
+        }
+        
+        // Parse file.
+        var table = null;
+        
+        try
+        {
+            table = JSON.parse(data);
+        }
+        catch(error)
+        {
+            throw error;
+            return;
+        }
+
+        // Deserialize data.
+        audio.setVolume(table.volume);
     };
     
     this.savePlaylist = function()
@@ -43,14 +99,6 @@ module.exports = new function()
             
             // Add playlist to table.
             table[i] = playlist;
-        });
-        
-        // Create user directory.
-        fs.mkdir(getUserDir(), function(error)
-        {
-            // Ignore if directory already exists.
-            if(error && error.code !== 'EEXIST')
-                throw error;
         });
         
         // Write to file.
