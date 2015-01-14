@@ -214,10 +214,14 @@ module.exports = new function()
     
     this.switchPlaylist = function(element)
     {
-        // Show the playlist we want.
-        var tracklist = $(element).data('tracklist');
-        $(tracklist.element).siblings().addClass('hidden');
-        $(tracklist.element).removeClass('hidden');
+        // Hide the current tracklist.
+        if(self.getCurrentPlaylist().length !== 0)
+        {
+            self.getCurrentPlaylist().data('tracklist').hide()
+        }
+        
+        // Show the tracklist we want.
+        $(element).data('tracklist').show();
     
         // Change playlist element style.
         $(element).siblings().removeClass('active');

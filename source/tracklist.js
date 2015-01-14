@@ -2,6 +2,7 @@ var Tracklist = function ()
 {
     this.element = null;
     this.trackMenu = null;
+    this.scrollTop = 0;
 };
 
 Tracklist.prototype.initialize = function()
@@ -81,6 +82,24 @@ Tracklist.prototype.cleanup = function()
 {
     // Remove track list.
     this.element.remove();
+};
+
+Tracklist.prototype.show = function()
+{
+    // Show the element.
+    $(this.element).removeClass('hidden');
+    
+    // Restore scroll position.
+    $('#tracklist-panel').scrollTop(this.scrollTop);
+};
+
+Tracklist.prototype.hide = function()
+{
+    // Save scroll position.
+    this.scrollTop = $('#tracklist-panel').scrollTop();
+
+    // Hide the element.
+    $(this.element).addClass('hidden');
 };
 
 Tracklist.prototype.addTrack = function(filepath)
