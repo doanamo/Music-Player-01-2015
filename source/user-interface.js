@@ -28,8 +28,8 @@ module.exports = new function()
             // Hide the window.
             this.hide();
         
-            // Save user data.
-            ui.playlistPanel.save();
+            // Save state.
+            state.save();
         
             // Close the window.
             this.close(true);
