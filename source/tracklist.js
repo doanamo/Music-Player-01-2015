@@ -26,6 +26,12 @@ Tracklist.prototype.initialize = function()
         }
     });
     
+    // Track scroll position.
+    this.element.on('scroll', function(event)
+    {
+        self.scrollTop = $(this).scrollTop();
+    });
+    
     // Make sure cursor is set when focused.
     $('#tracklist-panel').focus(function()
     {
@@ -88,16 +94,10 @@ Tracklist.prototype.show = function()
 {
     // Show the element.
     $(this.element).removeClass('hidden');
-    
-    // Restore scroll position.
-    $('#tracklist-panel').scrollTop(this.scrollTop);
 };
 
 Tracklist.prototype.hide = function()
 {
-    // Save scroll position.
-    this.scrollTop = $('#tracklist-panel').scrollTop();
-
     // Hide the element.
     $(this.element).addClass('hidden');
 };
