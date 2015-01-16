@@ -80,7 +80,7 @@ module.exports = new function()
         // Create table for playlist to be stored.
         var table = [];
         
-        $('#playlist-panel .list-group').children().each(function(i)
+        $('#playlist-panel ul').children().each(function(i)
         {
             var playlist = {};
             
