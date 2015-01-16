@@ -14,75 +14,71 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <div id="main-panel" class="panel panel-default">
-            <div class="panel-body">
-                <ul class="list-group">
-                    <li id="control-panel" class="list-group-item">
-                        <div id="playback-control">
-                            <div class="btn-group">
-                                <button id="playback-stop" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-stop"></span>
-                                </button>
-                                
-                                <button id="playback-pause" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-pause"></span>
-                                </button>
-                                
-                                <button id="playback-play" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-play"></span>
-                                </button>
-                                
-                                <button id="playback-previous" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-step-backward"></span>
-                                </button>
-                                
-                                <button id="playback-next" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-step-forward"></span>
-                                </button>
-                            </div>
-                        </div>
+        <div id="main-panel">
+            <div id="control-panel">
+                <div id="playback-control">
+                    <div class="btn-group">
+                        <button id="playback-stop" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-stop"></span>
+                        </button>
                         
-                        <div id="application-control">
-                            <div class="btn-group">
-                                <button id="application-volume" class="btn btn-default btn-sm">
-                                    <span id="volume-icon" class="glyphicon glyphicon-volume-up"></span>
-                                </button>
-                            
-                                <button id="application-settings" class="btn btn-default btn-sm disabled">
-                                    <span class="glyphicon glyphicon-cog"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </li>
+                        <button id="playback-pause" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-pause"></span>
+                        </button>
+                        
+                        <button id="playback-play" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-play"></span>
+                        </button>
+                        
+                        <button id="playback-previous" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-step-backward"></span>
+                        </button>
+                        
+                        <button id="playback-next" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-step-forward"></span>
+                        </button>
+                    </div>
+                </div>
                 
-                    <li id="view-panel" class="list-group-item">
-                        <div id="playlist-panel">
-                            <ul class="list-group">
-                                <!-- List of playlists. -->
-                            </ul>
-                        </div>
-                        
-                        <div id="tracklist-panel" tabindex="0">
-                            <!-- Tracklist elements. -->
-                        </div>
-                    </li>
+                <div id="application-control">
+                    <div class="btn-group">
+                        <button id="application-volume" class="btn btn-default btn-sm">
+                            <span id="volume-icon" class="glyphicon glyphicon-volume-up"></span>
+                        </button>
                     
-                    <li id="playback-panel" class="list-group-item">
-                        <div id="playback-info">
-                            <b>Playing: </b>
-                            <p id="playback-name">None</p>
-                            <p id="playback-time"><span class="current">00:00</span> / <span class="duration">00:00</span></p>
-                        </div>
-                        
-                        <div id="playback-progress" class="progress">
-                            <div class="progress-bar progress-bar-default" role="progressbar" style="width: 0%"></div>
-                        </div>
-                    </li>
-                </ul>
+                        <button id="application-settings" class="btn btn-default btn-sm disabled">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+            <div id="view-panel">
+                <div id="playlist-panel">
+                    <ul>
+                        <!-- List of playlists. -->
+                    </ul>
+                </div>
+                
+                <div id="tracklist-panel" tabindex="0">
+                    <!-- Tracklist elements. -->
+                </div>
+            </div>
+            
+            <div id="playback-panel">
+                <div id="playback-info">
+                    <b>Playing: </b>
+                    <p id="playback-name">None</p>
+                    <p id="playback-time"><span class="current">00:00</span> / <span class="duration">00:00</span></p>
+                </div>
+                
+                <div id="playback-progress" class="progress">
+                    <div class="progress-bar progress-bar-default" role="progressbar" style="width: 0%"></div>
+                </div>
             </div>
         </div>
         
-        <div id="volume-panel" class="panel panel-default">
+        <div id="volume-panel">
             <div id="volume-slider" class="progress">
                 <div class="progress-bar progress-bar-default" role="progressbar" style="width: 100%"></div>
             </div>

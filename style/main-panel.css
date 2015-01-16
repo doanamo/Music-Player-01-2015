@@ -1,24 +1,11 @@
 #main-panel
 {
     position: fixed;
+
     top: 0px;
-    bottom: 0px;
     left: 0px;
+    bottom: 0px;
     right: 0px;
-    margin: 0px;
     
-    border-radius: 0px;
-    border-width: 0px;
-}
-
-#main-panel > .panel-body
-{
     padding: 0px;
-}
-
-#main-panel > .panel-body > .list-group > li
-{
-    border-radius: 0px;
-    border-width: 0px;
-    margin: 0px;
 }
