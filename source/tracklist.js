@@ -11,7 +11,6 @@ Tracklist.prototype.initialize = function()
 
     // Create track list element.
     this.element = $('<ul>');
-    this.element.addClass('list-group');
     this.element.addClass('hidden');
     
     // Handle dropped files on track list.
@@ -114,7 +113,6 @@ Tracklist.prototype.addTrack = function(filepath)
     
     // Create list element.
     var element = $('<li>');
-    element.addClass('list-group-item');
     element.data('filepath', filepath);
     element.append($('<div>').text(name));
     
