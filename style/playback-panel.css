@@ -1,8 +1,10 @@
 #playback-panel
 {
-    position: absolute;
-    width: 100%;
-    bottom: 0px;
+    display: table-row; 
+
+    //position: absolute;
+    //width: 100%;
+    //bottom: 0px;
     
     border-top-width: 1px !important;
 }

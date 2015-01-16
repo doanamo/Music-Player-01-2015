@@ -46,20 +46,6 @@ module.exports = new function()
             event.preventDefault();
         };
         
-        window.onresize = function()
-        {
-            // Resize view panel to fill the remaining space.
-            var mainHeight = $('#main-panel').outerHeight();
-            var controlHeight = $('#control-panel').outerHeight();
-            var playbackHeight = $('#playback-panel').outerHeight();
-            
-            var viewHeight = mainHeight - controlHeight - playbackHeight;
-            $('#view-panel').css('height', viewHeight);
-        };
-        
-        // Call resize handler once.
-        window.onresize();
-        
         // Page events.
         $(window.document).mousemove(function(event)
         {
