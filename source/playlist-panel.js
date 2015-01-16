@@ -82,7 +82,6 @@ module.exports = new function()
     {
         // Create list element.
         var element = $('<li>');
-        element.addClass('list-group-item');
         
         // Create text label edit.
         var labelContainer = $('<div>');
@@ -191,7 +190,7 @@ module.exports = new function()
         else
         {
             // Place at the end.
-            $('#playlist-panel .list-group').append(element);
+            $('#playlist-panel ul').append(element);
         }
         
         // Switch to newly created playlist.
