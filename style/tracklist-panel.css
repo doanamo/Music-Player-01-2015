@@ -1,7 +1,9 @@
 #tracklist-panel
 {
-    padding: 0px 0px;
+    width: 100%;
     height: 100%;
+    
+    padding: 0px 0px;
 }
 
 #tracklist-panel ul
