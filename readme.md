@@ -3,10 +3,7 @@
 </p>
 
 # Music Player
-Unnamed music player running in Node-Webkit.
-
-This is my first JavaScript project after finishing Codeacademy course.<br/>
-Don't expect quality code in here. This is work in progress!
+Unnamed music player running in Node-Webkit. Work in progress!
 
 # How To Run
 1. Download [Node-Webkit](https://github.com/rogerwang/node-webkit) (v0.11.5+).
