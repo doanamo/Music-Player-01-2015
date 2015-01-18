@@ -19,7 +19,6 @@
     opacity: 1;
     
     transition: opacity 0.3s linear;
-    transition-delay: 0.05s;
     
     overflow-y: auto;
 }
@@ -39,27 +38,15 @@
 {
     -webkit-user-select: none;
     
-    border-left-width: 0px;
-    border-right-width: 0px;
+    padding: 6px 12px;
     
-    transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
+    border-bottom: 1px solid #ddd;
     
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-#tracklist-panel li:first-child
-{
-    border-top-width: 0px;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
+    transition: padding 0.5s ease;
 }
 
 #tracklist-panel li:last-child
 {
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    
     margin-bottom: -1px;
 }
 
@@ -67,7 +54,6 @@
 {
     -webkit-user-select: auto;
     
-    display: inline-block;
     width: auto;
 }
 
@@ -91,10 +77,17 @@
 
 #tracklist-panel li.active
 {
-    transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
+    background-color: #337ab7;
 
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    
+    transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
+}
+
+#tracklist-panel li.active div
+{
+    color: white;
 }
 
 #tracklist-panel li:hover
