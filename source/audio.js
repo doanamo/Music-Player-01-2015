@@ -18,6 +18,8 @@ module.exports = new function()
         self.stop();
         self.sound = null;
         
+        ui.playbackPanel.reset();
+        
         player.onTrackDiscard();
         
         // Load the sound file.

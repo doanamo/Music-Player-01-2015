@@ -41,6 +41,14 @@ module.exports = new function()
         });
     };
     
+    this.reset = function()
+    {
+        $('#playback-name').text("None");
+        $('#playback-time .current').text("00:00");
+        $('#playback-time .duration').text("00:00");
+        $('#playback-progress .progress-bar').css('width', '0%');
+    };
+    
     this.setTrackName = function(filepath)
     {
         // Get file name without extension from full path.
