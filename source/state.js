@@ -84,15 +84,17 @@ module.exports = new function()
         {
             var playlist = {};
             
-            // Write playlist name,
+            // Get tracklist object.
+            var tracklist = $(this).data('tracklist');
+            
+            // Write playlist info.
             playlist.name = $(this).children().text();
+            playlist.scroll = $(tracklist.element).scrollTop();
             
             // Write playlist tracks.
             playlist.tracks = [];
-            
-            var tracklist = $(this).data('tracklist').element;
-            
-            $(tracklist).children().each(function(i)
+
+            $(tracklist.element).children().each(function(i)
             {
                 playlist.tracks[i] = $(this).data('filepath');
             });
@@ -148,6 +150,9 @@ module.exports = new function()
             {
                 tracklist.addTrack(table[p].tracks[t]);
             }
+            
+            // Set tracklist scroll.
+            $(tracklist.element).scrollTop(table[p].scroll);
         }
     };
 };

@@ -2,7 +2,6 @@ var Tracklist = function ()
 {
     this.element = null;
     this.trackMenu = null;
-    this.scrollTop = 0;
 };
 
 Tracklist.prototype.initialize = function()
@@ -24,13 +23,7 @@ Tracklist.prototype.initialize = function()
             self.addTrack(files[i].path);
         }
     });
-    
-    // Track scroll position.
-    this.element.on('scroll', function(event)
-    {
-        self.scrollTop = $(this).scrollTop();
-    });
-    
+   
     // Make sure cursor is set when focused.
     $('#tracklist-panel').focus(function()
     {
