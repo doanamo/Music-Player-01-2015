@@ -78,7 +78,10 @@ module.exports = new function()
     this.savePlaylist = function()
     {
         // Create table for playlist to be stored.
-        var table = [];
+        var table = {};
+        
+        table.active = 0;
+        table.playlists = [];
         
         $('#playlist-panel ul').children().each(function(i)
         {
@@ -100,7 +103,13 @@ module.exports = new function()
             });
             
             // Add playlist to table.
-            table[i] = playlist;
+            table.playlists[i] = playlist;
+            
+            // Check if this playlist is active.
+            if($(this).hasClass('active'))
+            {
+                table.active = i;
+            }
         });
         
         // Write to file.
@@ -138,21 +147,27 @@ module.exports = new function()
         }
         
         // Deserialize data.
-        for(var p = 0; p < table.length; ++p)
+        var playlists = table.playlists;
+        
+        for(var p = 0; p < playlists.length; ++p)
         {
             // Create playlist.
-            var playlist = ui.playlistPanel.createPlaylist(table[p].name);
+            var playlist = ui.playlistPanel.createPlaylist(playlists[p].name);
             
             // Add tracks to the playlist.
             var tracklist = playlist.data('tracklist');
             
-            for(var t = 0; t < table[p].tracks.length; ++t)
+            for(var t = 0; t < playlists[p].tracks.length; ++t)
             {
-                tracklist.addTrack(table[p].tracks[t]);
+                tracklist.addTrack(playlists[p].tracks[t]);
             }
             
             // Set tracklist scroll.
-            $(tracklist.element).scrollTop(table[p].scroll);
+            $(tracklist.element).scrollTop(playlists[p].scroll);
         }
+        
+        // Switch to last active playlist.
+        var activePlaylist = $('#playlist-panel ul').children().eq(table.active);
+        ui.playlistPanel.switchPlaylist(activePlaylist);
     };
 };
