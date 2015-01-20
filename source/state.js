@@ -91,7 +91,7 @@ module.exports = new function()
             var tracklist = $(this).data('tracklist');
             
             // Write playlist info.
-            playlist.name = $(this).children().text();
+            playlist.name = $(this).find('label').text();
             playlist.scroll = $(tracklist.element).scrollTop();
             
             // Write playlist tracks.
