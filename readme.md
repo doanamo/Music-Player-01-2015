@@ -1,5 +1,5 @@
 # Music Player
-Unnamed music player running in Node-Webkit. Work in progress!
+Slick looking music player running in Node-Webkit and built with Bootstrap.
 
 ![](resource/screenshot.png)
 
